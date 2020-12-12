@@ -22,4 +22,5 @@ urlpatterns = [
     
     path('/', views.MainFunc),
     path('', views.MainFunc),
+    path('/', views.MainFunc),
 ]

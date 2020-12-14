@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+<h2>** 상세보기 **</h2>
+<table class="table" style="width: 70%;">
+	<tr>
+		<td style="text-align:right;">
+			<a href="/board/reply?id={{data_one.id}}">댓글</a>
+			<a href="/board/update?id={{data_one.id}}">수정</a>
+			<a href="/board/delete?id={{data_one.id}}">삭제</a>
+			<a href="/board/list?page={{page}}">목록</a>
+		</td>
+	</tr>
+</table>
+<table class="table" style="width: 70%">
+	<tr style="background-color: silver;">
+		<td>
+			작성자 : <a href="mailto:{{data_one.mail}}">{{data_one.mail}}</a>
+			(ip: {{data_one.bip}})
+		</td>
+		<td>작성일 : {{data_one.bdate}}</td>
+		<td>조회수 : {{data_one.readcnt}}</td>
+	</tr>
+	<tr>
+		<td colspan="3">제목 : {{data_one.title}}</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<textarea rows="5" cols="50" name="cont" readonly="readonly" style="width:100%">{{data_one.cont}}</textarea>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

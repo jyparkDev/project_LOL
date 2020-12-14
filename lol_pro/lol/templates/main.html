@@ -3,8 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.left {
+   width: 80%;
+}
+
+.right {
+   width: 20%;
+}
+
+.title {
+   width: 100%; 
+}
+
+.container {
+   display: inline-flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-around;
+}
+
+.card, .embed-responsive iframe {
+   flex: 1 1 30%;
+   border-radius: .25rem;
+   
+}
+
+
+
+.main_pack {
+    float: left;
+    display: inline;
+    width: 80%;
+    zoom: 1;
+}
+
+.placeholder{
+width: 100%; 
+
+
+}
+
+</style>
+
 </head>
 <body>
-hi
+<header>
+<a href="/">메인</a>
+<a href="/champion/statistics/">챔피언 분석</a>
+<a href="/statistics/champion/">통계</a>
+<a href="/multi/query=">승리예측</a>
+{{head|safe}}
+<a href='board/list/'>커뮤니티</a> <!-- 게시판에 디비정보 없어서 등록 에러뜸-->
+<hr>
+</header>
+<b>메인 이미지</b>
+<hr>
+<form accept-charset="UTF-8" action="chsearch" method="get" name="empfrom" style="text-align: center;">
+   <div class="placeholder">
+      <input style="size: 100px" type="text" class="form-control " placeholder="소환사, 소환사  명으로 검색" name="chsearch_name">
+      <div class="button">
+         <button class="button" type="button" id="btnchsearch">검색</button>
+      </div>
+   </div>
+</form>
+
+<!-- 최근검색, 즐겨찾기   -->
+  <section class="w-75 mx-auto">
+      <div class="contents py-5 main_pack">
+         <div class="left">
+            <div class="title p-3">
+               <h3 style="padding-left: 15px; padding-right: 15px;">인기 영상</h3>
+            </div>
+            <!-- 1 -->
+            <div class="container">
+               <div class="card">
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe height="10%"
+                    src="https://www.youtube.com/embed/weliuejvEp4" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                    </iframe>
+                  </div>
+        
+               <div class="card">
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe 
+                    src="https://www.youtube.com/embed/9OrHo_zj7iA" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                    </iframe>
+                  </div>
+               </div>
+
+               </div>
+               <div class="card">
+                  <div class="embed-responsive embed-responsive-16by9">
+                     <iframe 
+                    src="https://www.youtube.com/embed/d9-BagQkrMo" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                    </iframe>
+                  </div>
+              </div>
+              
+              <div class="card">
+                  <div class="embed-responsive embed-responsive-16by9">
+                     <iframe 
+                    src="https://www.youtube.com/embed/JSRHzIc8Qd0" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                    </iframe>
+                  </div>
+              </div>
+              
+              <div class="card">
+                  <div class="embed-responsive embed-responsive-16by9">
+                     <iframe 
+                    src="" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                    </iframe>
+                  </div>
+              </div>
+              <div class="card">
+                  <div class="embed-responsive embed-responsive-16by9">
+                     <iframe 
+                    src="https://www.youtube.com/embed/eWX7aT-pwko" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                    </iframe>
+                  </div>
+              </div>
+              
+              <div class="card">
+                  <div class="embed-responsive embed-responsive-16by9">
+                     <iframe 
+                    src="https://www.youtube.com/embed/ColSb5ahjGU" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                    </iframe>
+                  </div>
+              </div>
+              
+              <div class="card">
+                  <div class="embed-responsive embed-responsive-16by9">
+                     <iframe 
+                    src="https://www.youtube.com/embed/xoDn1g-Wp1U" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                    </iframe>
+                  </div>
+              </div>
+         </div>
+         <div class="right"></div>
+      </div>
+      </section>
+     
+ 
 </body>
 </html>

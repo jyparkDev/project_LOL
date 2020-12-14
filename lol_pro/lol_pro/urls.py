@@ -16,11 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from lol import views
+from django.urls.conf import include
+# from myboard import views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
+#<<<<<<< HEAD
     path('/', views.MainFunc),
     path('', views.MainFunc),
     path('/', views.MainFunc),
+#=======
+#     path('/', views.MainFunc), # 메인
+    path('', views.MainFunc), # 메인
+    
+    path('champion/', include('lol.urls1')), # 챔피언 분석
+    path('statistics/', include('lol.urls2')), # 통계
+    path('multi/', include('lol.urls3')), # 승률예측(멀티서치)
+    path('board/', include('myboard.urls')), # 게시판
+#>>>>>>> branch 'develop' of https://github.com/vdragon95/lol_project.git
 ]

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btnOk").click(function(){
+		//alert("a");
+		var msg =$("#msg").val();
+		$(".showData").empty();
+
+		$.ajax({
+			url:'/statistics_all',
+			type:'get',
+			data:{'msg':msg},
+			dataType:'json',
+			success:function(data){
+				//alert(data);
+				var str = "<table border='1'>"
+				str += ""
+				count = 0;
+				$.each(data, function(ind, entry){
+					
+		
+			},
+			error:function(){
+				$(".showData").text("처리오류");
+						
+			}
+			});
+		});
+	});
+	
+window.onload = function () { 
+	startLoadFile(); 
+}; 
+	
+function startLoadFile(){ 
+		$.ajax({ 
+			url: 'images.json', 
+			type: 'GET', dataType : 'json', 
+			success : function (data) { 
+				createImages(data) 
+				} 
+		}); 
+		} 
+		// JSON 포멧 데이터 처리 
+	
+function createImages(objImageInfo) { 
+	var images = objImageInfo.images; 
+	var strDOM = ""; 
+	for (var i = 0; i < images.length; i++) { // N번째 이미지 정보를 구하기 
+		var image = images[i]; // N번째 이미지 패널을 생성 
+		strDOM += '<div class="image_panel">'; 
+		strDOM += ' '<img src="' + image.url + '">'; 
+		strDOM += ' '<p class="title">' + image.title + ''</p>'; 
+		strDOM += ''</div>'; } // 이미지 컨테이너에 생성한 이미지 패널들을 추가하기 
+		var $imageContainer = $("#image_container"); 
+		$imageContainer.append(strDOM); 
+		}
+
+
+</script>
+</head>
+<body>
+<header>
+<a href="/">메인</a>
+<a href="/champion/statistics/">챔피언 분석</a>
+<a href="/statistics/champion/">통계</a>
+<a href="/multi/query=">승리예측</a>
+{{head|safe}}
+<a href='/board/list/'>커뮤니티</a> <!-- 게시판에 디비정보 없어서 등록 에러뜸-->
+</header>
+<b>여기가 챔피언 분석</b>
+<div class="l-champion-index-content--main">
+ 	<div class="champion-list-filter">
+    	<ul class="champion-list-filter__type">
+            <li class="champion-list-filter__type__item champion-list-filter__type__item--active" data-filter-type="ALL"><a href="#">전체</a></li>
+            <li class="champion-list-filter__type__item " data-filter-type="TOP"><a href="#">탑</a></li>
+            <li class="champion-list-filter__type__item " data-filter-type="JUNGLE"><a href="#">정글</a></li>
+            <li class="champion-list-filter__type__item " data-filter-type="MID"><a href="#">미드</a></li>
+            <li class="champion-list-filter__type__item " data-filter-type="ADC"><a href="#">바텀</a></li>
+            <li class="champion-list-filter__type__item " data-filter-type="SUPPORT"><a href="#">서포터</a></li>
+            <li class="champion-list-filter__type__item champion-list-filter__type__item--rotation" data-filter-type="rotation"><a href="#">로테이션</a></li>                    
+        </ul>
+		<div class="champion-list-filter__keyword">
+        	<input type="text" id="msg" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)">
+            <button id="btn1">검색</button>
+        </div>
+    </div>
+        <div class="showData" >결과</div>
+</div>
+<div id="image_container"> <!-- 이미지 마크업 생성 공간 --> </div>
+
+
+
+</body>
+</html>

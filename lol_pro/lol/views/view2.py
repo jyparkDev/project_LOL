@@ -4,6 +4,6 @@ from django.shortcuts import render
 def StatisticsFunc(request):
     return render(request, 'champion/statistics.html')
 
-def StatisticsFunc2(request):
-    msg = request.GET['msg']
-    return render(request, 'champion/statistics.html')
+def StatisticsChaFunc(request):
+
+    return render(request, 'champion/champion_detail.html')

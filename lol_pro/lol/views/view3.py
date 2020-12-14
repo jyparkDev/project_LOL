@@ -3,3 +3,7 @@ from django.shortcuts import render
 
 def ChampionFunc(request):
     return render(request, 'statistics/champion.html')
+
+
+def TierFunc(request):
+    return render(request, 'statistics/tier.html')

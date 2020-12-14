@@ -3,4 +3,5 @@ from lol.views import view3
 
 urlpatterns = [
     path('champion/', view3.ChampionFunc),
+    path('tier/', view3.TierFunc),
 ]

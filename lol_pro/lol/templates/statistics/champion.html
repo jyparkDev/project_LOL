@@ -13,7 +13,154 @@
 {{head|safe}}
 <a href='/board/list/'>커뮤니티</a> <!-- 게시판에 디비정보 없어서 등록 에러뜸-->
 </header>
-<b>일단 여기가 챔피언 통계창</b>
 
+<a href="/statistics/champion/">챔피언별 게임 통계</a>
+<a href="/statistics/tier/">티어별 게임 통계</a><br>
+
+<hr>
+
+<!-- 통계 조건 선택 부분 -->
+<div class="StatisticsChampionLayout">
+	<div class="Header">
+		<div class="Box">
+			<div class="Content">
+				<form id="statisticsChampionForm" action="/statistics/ajax2/champion/" method="post" onsubmit="$.OP.GG.statistics.form.submitChampion(this); return false;">
+					<table class="StatisticsFilter" border="1">
+						<colgroup>
+							<col width="174">
+							<col width="174">
+							<col width="193">
+							<col width="193">
+							<col width="194">
+						</colgroup>
+						<thead class="Header">
+							<tr class="Row">
+								<th class="HeaderCell">그래프 종류</th>
+								<th class="HeaderCell">리그</th>
+								<th class="HeaderCell">시간</th>
+								<th class="HeaderCell">맵</th>
+								<th class="HeaderCell">큐 타입</th>
+							</tr>
+						</thead>
+						<tbody class="Content">
+							<tr class="Row">
+								<td class="Cell">
+									<div class="ButtonWrap">
+										<div id="rate_win" class="RadioButton">
+											<input type="radio" name="type" id="win" value="win" class="Radio" checked>
+											<label for="win" class="Label">승률</label>
+										</div>
+										<div id="rate_win_asc" class="RadioButton">
+											<input type="radio" name="type" id="lose" value="lose" class="Radio">
+											<label for="lose" class="Label">낮은승률</label>
+										</div>
+																																																																																										<div id="rate_pick" class="RadioButton">
+											<input type="radio" name="type" id="picked" value="picked" class="Radio">
+											<label for="picked" class="Label">게임당 픽률</label>
+										</div>
+										<div id="rate_ban" class="RadioButton">
+										<input type="radio" name="type" id="banned" value="banned" class="Radio">
+										<label for="banned" class="Label">게임당 밴률</label>
+										</div>
+									</div>
+								</td>
+								<td class="Cell">
+									<div class="ButtonWrap">
+										<div id="tier_all" class="RadioButton">
+											<input type="radio" name="league" id="all" value="" class="Radio" checked>
+											<label for="all" class="Label">전체</label>
+										</div>
+										<div id="tier_iron" class="RadioButton">
+											<input type="radio" name="league" id="iron" value="iron" class="Radio">
+											<label for="iron" class="Label">Iron</label>
+										</div>
+										<div id="tier_bronze" class="RadioButton">
+											<input type="radio" name="league" id="bronze" value="bronze" class="Radio">
+											<label for="bronze" class="Label">Bronze</label>
+										</div>
+										<div id="tier_silver" class="RadioButton">
+											<input type="radio" name="league" id="silver" value="silver" class="Radio">
+											<label for="silver" class="Label">Silver</label>
+										</div>
+										<div id="tier_gold" class="RadioButton">
+											<input type="radio" name="league" id="gold" value="gold" class="Radio">
+											<label for="gold" class="Label">Gold</label>
+										</div>
+										<div id="tier_platinum" class="RadioButton">
+											<input type="radio" name="league" id="platinum" value="platinum" class="Radio">
+											<label for="platinum" class="Label">Platinum</label>
+										</div>
+										<div id="tier_diamond" class="RadioButton">
+											<input type="radio" name="league" id="diamond" value="diamond" class="Radio">
+											<label for="diamond" class="Label">Diamond</label>
+										</div>
+										<div id="tier_master" class="RadioButton">
+											<input type="radio" name="league" id="master" value="master" class="Radio">
+											<label for="master" class="Label">Master</label>
+										</div>
+										<div id="tier_grandmaster" class="RadioButton">
+											<input type="radio" name="league" id="grandmaster" value="grandmaster" class="Radio">
+											<label for="grandmaster" class="Label">Grand Master</label>
+										</div>
+										<div id="tier_challenger" class="RadioButton">
+											<input type="radio" name="league" id="challenger" value="challenger" class="Radio">
+											<label for="challenger" class="Label">Challenger</label>
+										</div>
+									</div>
+								</td>
+								<td class="Cell">
+									<div class="ButtonWrap">
+										<div id="recent_month" class="RadioButton">
+											<input type="radio" name="period" id="month" value="month" class="Radio" checked>
+											<label for="month" class="Label">최근 1달</label>
+										</div>
+										<div id="recent_week" class="RadioButton">
+											<input type="radio" name="period" id="week" value="week" class="Radio">
+											<label for="week" class="Label">최근 7일</label>
+										</div>
+										<div id="recent_today" class="RadioButton">
+											<input type="radio" name="period" id="today" value="today" class="Radio">
+											<label for="today" class="Label">오늘</label>
+										</div>
+									</div>
+								</td>
+								<td class="Cell">
+									<div class="ButtonWrap">
+										<div id="map_summonersrift" class="RadioButton">
+											<input type="radio" name="mapId" id="mapId1" value="1" class="Radio" checked>
+											<label for="mapId1" class="Label">소환사의 협곡</label>
+										</div>
+										<div id="map_howlingabyss" class="RadioButton">
+											<input type="radio" name="mapId" id="mapId12" value="12" class="Radio">
+											<label for="mapId12" class="Label">칼바람 나락</label>
+										</div>
+									</div>
+								</td>
+								<td class="Cell">
+									<div class="ButtonWrap">
+																				<div id="game_rank" class="RadioButton">
+											<input type="radio" name="queue" id="ranked" value="ranked" class="Radio" checked>
+											<label for="ranked" class="Label">랭크게임</label>
+										</div>
+																																																		<div id="game_normal" class="RadioButton">
+											<input type="radio" name="queue" id="normal" value="normal" class="Radio">
+											<label for="normal" class="Label">노말</label>
+										</div>
+										<div id="game_aram" class="RadioButton">
+											<input type="radio" name="queue" id="aram" value="aram" class="Radio">
+											<label for="aram" class="Label">무작위 총력전</label>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<hr>
+	통계 결과창
+	
 </body>
 </html>

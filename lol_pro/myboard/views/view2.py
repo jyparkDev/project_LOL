@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect
-from myboard.models import BoardTab
+from myboard.models import Boardtab
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http.response import HttpResponseRedirect
 from datetime import datetime
 
 
 def ListFunc(request):
-#     datas = BoardTab.objects.all().order_by('-id')
+#     datas = Boardtab.objects.all().order_by('-id')
 # 마지막에 할거
-    datas = BoardTab.objects.all().order_by('-gnum','onum')
+    datas = Boardtab.objects.all().order_by('-gnum','onum')
     paginator = Paginator(datas, 5)
     page = request.GET.get('page')
-    
+     
     try:
         data = paginator.page(page)
     except PageNotAnInteger:
@@ -19,10 +19,10 @@ def ListFunc(request):
     except EmptyPage:
         data = paginator.page(paginator.num_pages)
     return render(request, 'board.html', {'data':data})
-
+ 
 def InsertFunc(request):
     return render(request, 'insert.html')
-
+ 
 def Get_ip_address(request):
     x_forwarded = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded:
@@ -30,15 +30,15 @@ def Get_ip_address(request):
     else:
         ip =request.META.get('REMOTE_ADDR')
     return ip
-
+ 
 def InsertOkFunc(request):
     if request.method == 'POST':
         try:
             gbun = 1
-            datas = BoardTab.objects.all() # group 번호 구하기
+            datas = Boardtab.objects.all() # group 번호 구하기
             if datas.count() != 0:
-                gbun = BoardTab.objects.latest('id').id + 1
-            BoardTab(
+                gbun = Boardtab.objects.latest('id').id + 1
+            Boardtab(
                 name = request.POST.get('name'),
                 passwd = request.POST.get('passwd'),
                 mail = request.POST.get('mail'),
@@ -55,24 +55,24 @@ def InsertOkFunc(request):
             print('추가 오류 : ' + str(e))
 #     return HttpResponseRedirect('/board/list/') # 추가 후 목록보기
     return redirect('/board/list/') # 위와 동일한결과
-
+ 
 def ContentFunc(request): # 글내용상세보기
-    data = BoardTab.objects.get(id=request.GET.get('id'))
+    data = Boardtab.objects.get(id=request.GET.get('id'))
     data.readcnt = data.readcnt + 1
     data.save() # 조회수 늘리기 수정
     page = request.GET.get('page')
     return render(request, 'content.html', {'data_one':data, 'page':page})
-    
+     
 def UpdateFunc(request):
     try:
-        data = BoardTab.objects.get(id=request.GET.get('id'))
+        data = Boardtab.objects.get(id=request.GET.get('id'))
     except Exception as e:
         print("UpdateFunc err : " + str(e))
-        
+         
     return render(request, 'update.html', {'data_one':data})
 def UpdateOkFunc(request):
     if request.method == 'POST':
-        upRec = BoardTab.objects.get(id=request.POST.get('id'))
+        upRec = Boardtab.objects.get(id=request.POST.get('id'))
         if upRec.passwd == request.POST.get('up_passwd'):
             upRec.name = request.POST.get('name')
             upRec.mail = request.POST.get('mail')
@@ -82,65 +82,65 @@ def UpdateOkFunc(request):
         else:
             return render(request, 'error.html')
     return HttpResponseRedirect('/board/list/') # 수정후 목록보기
-
+ 
 def DeleteFunc(request):
     try:
-        data = BoardTab.objects.get(id=request.GET.get('id'))
+        data = Boardtab.objects.get(id=request.GET.get('id'))
     except Exception as e:
         print("DeleteFunc err : " + str(e))
-        
+         
     return render(request, 'delete.html', {'data_one':data})
-
+ 
 def DeleteOkFunc(request):
     if request.method == 'POST':
-        delRec = BoardTab.objects.get(id=request.POST.get('id'))
+        delRec = Boardtab.objects.get(id=request.POST.get('id'))
         if delRec.passwd == request.POST.get('del_passwd'):
-            delRec.delete() # delete from boardtab where id='id'
+            delRec.delete() # delete from Boardtab where id='id'
         else:
             return render(request, 'error.html')
     return HttpResponseRedirect('/board/list/') # 수정후 목록보기
-
+ 
 def SearchFunc(request):
     if request.method == 'POST':
         s_type = request.POST.get('s_type')
         s_value = request.POST.get('s_value')
 #         print('s_type:',s_type, " s_value :" , s_value) # s_type: title  s_value : 연습
         if s_type == 'title':
-            datas = BoardTab.objects.filter(title__contains = s_value).order_by('-id')
+            datas = Boardtab.objects.filter(title__contains = s_value).order_by('-id')
         elif s_type == 'name':
-            datas = BoardTab.objects.filter(name__contains = s_value).order_by('-id')
+            datas = Boardtab.objects.filter(name__contains = s_value).order_by('-id')
     paginator = Paginator(datas, 5)
     page = request.GET.get('page')    
-         
+          
     try:
         data = paginator.page(page)
     except PageNotAnInteger:
         data = paginator.page(1)
     except EmptyPage:
         data = paginator.page(paginator.num_pages)
-        
+         
     return render(request, 'board.html', {'data':data})
-
+ 
 def ReplyFunc(request):
     try:
-        data = BoardTab.objects.get(id = request.GET.get('id'))
+        data = Boardtab.objects.get(id = request.GET.get('id'))
     except Exception as e:
         print("replyfunc err :" + str(e))
     return render(request, 'reply.html', {'data_one':data})
-
+ 
 def ReplyOkFunc(request):
     if request.method == 'POST':
         try:
             regnum = int(request.POST.get('gnum'))
             reonum = int(request.POST.get('onum'))
-            temRec = BoardTab.objects.get(id = request.POST.get('id'))
+            temRec = Boardtab.objects.get(id = request.POST.get('id'))
             old_gnum = temRec.gnum
             old_onum = temRec.onum
             if old_onum >= reonum and old_gnum == regnum:
                 old_onum = old_onum + 1 # onum 갱신
-                
+                 
             # 댓글 저장
-            BoardTab(
+            Boardtab(
                 name = request.POST.get('name'),
                 passwd = request.POST.get('passwd'),
                 mail = request.POST.get('mail'),
@@ -155,5 +155,5 @@ def ReplyOkFunc(request):
             ).save()
         except Exception as e:
             print("replyok err : " + str(e))
-            
+             
     return redirect('/board/list/') # 댓글 입력 후 목록 보기

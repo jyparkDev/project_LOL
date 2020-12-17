@@ -3,8 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
+<style type="text/css">
+table{
+margin: auto;
+text-align: left;
+width: 80%;
+height: 100px;
+background-color: white;
+
+}
+.test { border-collapse:collapse }
+
+ .main {
+            min-width: 320px;
+            max-width: 800px;
+            padding: 50px;
+            margin: 0 auto;
+            background: #ffffff;}
+
+        section {
+            display: none;
+            padding: 20px 0 0;
+            border-top: 1px solid #ddd;}
+
+        /*라디오버튼 숨김*/
+          input {
+              display: none;}
+
+        label {
+            display: inline-block;
+            margin: 0 0 -1px;
+            padding: 15px 25px;
+            font-weight: 600;
+            text-align: center;
+            color: #bbb;
+            border: 1px solid transparent;}
+
+        label:hover {
+            color: #2e9cdf;
+            cursor: pointer;}
+
+        /*input 클릭시, label 스타일*/
+        input:checked + label {
+              color: #555;
+              border: 1px solid #ddd;
+              border-top: 2px solid #2e9cdf;
+              border-bottom: 1px solid #ffffff;}
+
+        #tab1:checked ~ #content1,
+        #tab2:checked ~ #content2,
+        #tab3:checked ~ #content3,
+        #tab4:checked ~ #content4 {
+            display: block;}
+
+    #custom-search-form {
+        margin:0;
+        margin-top: 5px;
+        padding: 0;
+    }
+ 
+    #custom-search-form .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    #custom-search-form button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }
+
+</style>
 <script type="text/javascript">
+
 $(document).ready(function(){
 	$(".").click(function(){
 		alert("hi")
@@ -101,46 +197,71 @@ function position(pos){
 }
 </script>
 </head>
-<body>
+<body style="background-color: #EAEAEA">
 <header>
-<a href="/">메인</a>
-<a href="/champion/statistics/">챔피언 분석</a>
-<a href="/statistics/champion/">통계</a>
-<a href="/multi/query=">승리예측</a>
-{{head|safe}}
-<a href='/board/list/'>커뮤니티</a> <!-- 게시판에 디비정보 없어서 등록 에러뜸-->
+{%include 'main_top.html'%}
 </header>
-<b>여기가 챔피언 분석</b>
-<div class="l-champion-index-content--main">
- 	<div class="champion-list-filter">
-    	<ul class="champion-list-filter__type">
-            <li class="champion-list-filter__type__item champion-list-filter__type__item--active" data-filter-type="ALL" id = 'top'><a href="/champion/statistics/">전체</a></li>
-            <li class="champion-list-filter__type__item " data-filter-type="TOP" id ='탑'><a href="javascript:position('탑');">탑</a></li>
-            <li class="champion-list-filter__type__item " data-filter-type="JUNGLE"><a href="javascript:position('정글');">정글</a></li>
-            <li class="champion-list-filter__type__item " data-filter-type="MID"><a href="javascript:position('미드');">미드</a></li>
-            <li class="champion-list-filter__type__item " data-filter-type="ADC"><a href="javascript:position('바텀');">바텀</a></li>
-            <li class="champion-list-filter__type__item " data-filter-type="SUPPORT"><a href="javascript:position('서포터');">서포터</a></li>
-            <li class="champion-list-filter__type__item champion-list-filter__type__item--rotation" data-filter-type="rotation"><a href="#">로테이션</a></li>                    
-        </ul>
-		<div class="champion-list-filter__keyword">
-        	<input type="text" id="msg" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)">
-            <button id="btn1">검색</button>
-        </div>
-    </div>
-        <div class="showData" >결과</div>
-</div>
+<br><br><br><br><br><br>
+<table class='test'>
+	<tr><td>
+	<div class="main">
+    <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+    <label for="tab1"><a href="/champion/statistics/">전체</a></label>
 
+    <input id="tab2" type="radio" name="tabs">
+    <label for="tab2"><a href="javascript:position('탑');">탑</a></label>
+
+   <input id="tab3" type="radio" name="tabs">
+    <label for="tab3"><a href="javascript:position('정글');">정글</a></label>
+
+    <input id="tab4" type="radio" name="tabs">
+    <label for="tab4"><a href="javascript:position('미드');">미드</a></label>
+
+    <input id="tab5" type="radio" name="tabs">
+    <label for="tab5"> <a href="javascript:position('바텀');">바텀</a></label>
+
+    <input id="tab6" type="radio" name="tabs">
+    <label for="tab6"><a href="javascript:position('서포터');">서포터</a></label>
+
+    <input id="tab7" type="radio" name="tabs">
+    <label for="tab7"><a href="#">로테이션</a></label><br><br>
+
+<div class="container">
+	<div class="row">
+        <div class="span12">
+            <form id="custom-search-form" class="form-search form-horizontal pull-right">
+                <div class="input-append span12">
+                    <input type="text" class="search-query" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)">
+                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                </div>
+            </form>
+        </div>
+	</div>
+</div>
+		
+		
+
+<table border="1">
+<tr>
+<td>
 <div id="image_container" class = 'image'> <!-- 이미지 마크업 생성 공간 --> 
 
 {% if cham %}
 {% for c in cham %}
-	<a href="/champion/champion_detail?cname={{c.cname}}"><img src = "/static/images/{{c.cimg}}" width="64px", heigh="15px">
-	<cite>{{c.cname}}</cite></a>
+	<a href="/champion/champion_detail?cname={{c.cname}}">
+	<img src = "/static/images/{{c.cimg}}" width="64px", heigh="15px">
+	<cite>{{c.cname}}</cite>
+	</a>
 {% endfor %}
 {% else %}
+
 <h3>챔피언 정보를 점검중 입니다!!</h3>
 {% endif %}
+</div>
+</td>
+</tr>
+</table>
 
-</div >
+
 </body>
 </html>

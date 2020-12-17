@@ -9,24 +9,58 @@ margin: auto;
 text-align: center;
 width: 60%;
 height: 100px;
+background-color: white;
+}
 
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
 }
 
 </style>
 </head>
-<body>
+<body style="background-color: #EAEAEA; text-align: center;" >
 <header>
-<a href="/">메인</a>
-<a href="/champion/statistics/">챔피언 분석</a>
-<a href="/statistics/champion/">통계</a>
-<a href="/multi/query=">승리예측</a>
-{{head|safe}}
-<a href='board/list/'>커뮤니티</a>
+{%include 'main_top.html'%}
 <hr>
 </header>
+<br><br><br>
 <!-- 챔피언 프로필부분 -->
-<table border="1">
-<tr>
+<table class="styled-table">
+<tr class="active-row">
 <td colspan="">탑 %</td>
 <td>미드 %</td>
 </tr>
@@ -45,7 +79,8 @@ height: 100px;
 
 <hr>
 <!-- 종합부분 -->
-<table border="1">
+
+<table class="styled-table">
 <tr>
 <td colspan="2">추천 소환사 주문</td>
 <td>픽률</td>
@@ -73,7 +108,7 @@ height: 100px;
 </table><br>
 
 <!-- 2번째 -->
-<table border="1">
+<table class="styled-table">
 <tr>
 <td colspan="4">추천 아이템 빌드</td>
 <td>픽률</td>
@@ -135,8 +170,37 @@ height: 100px;
 </table>
 
 <!-- 3번째 -->
-<table>
+<table class="styled-table">
+<tr>
+<td colspan="4">추천 아이템 빌드</td>
 
+</tr>
+<tr>
+<td rowspan="2">이미지</td>
+<td colspan="3">룬정보</td>
+<td rowspan="2">이미지</td>
+<<td colspan="3">룬정보</td>
+</tr>
+<tr>
+<td colspan="3">픽률% 승률%</td>
+<td colspan="3">픽률% 승률%</td>
+</tr>
+
+<tr>
+<td colspan="4">이미지</td>
+<td>이미지</td>
+<td>이미지</td>
+<td>승률 % 픽률 %</td>
+</tr>
+
+<tr>
+<td colspan="4">이미지</td>
+<td>이미지</td>
+<td>이미지</td>
+<td>승률 % 픽률 %</td>
+</tr>
 </table>
+
+
 </body>
 </html>

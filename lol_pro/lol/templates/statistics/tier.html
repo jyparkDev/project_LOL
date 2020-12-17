@@ -3,15 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
-<body>
+<body bgcolor="#5383E8">
 <header>
-<a href="/">메인</a>
-<a href="/champion/statistics/">챔피언 분석</a>
-<a href="/statistics/champion/">통계</a>
-<a href="/multi/query=">승리예측</a>
-{{head|safe}}
-<a href='/board/list/'>커뮤니티</a> <!-- 게시판에 디비정보 없어서 등록 에러뜸-->
+{%include 'main_top.html'%}
 </header>
 
 <a href="/statistics/champion/">챔피언별 게임 통계</a>

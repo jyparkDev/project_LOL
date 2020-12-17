@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+ #blueTeam {
+  float:left; width:600px; height:200px;}
+ #purpleTeam {
+  display:inline-block; width:600px; height:200px; margin-left:10px;}  
+</style>
 <body>
 <header>
 <a href="/">메인</a>
@@ -14,5 +20,29 @@
 <a href='/board/list/'>커뮤니티</a> <!-- 게시판에 디비정보 없어서 등록 에러뜸-->
 </header>
 <b>여기가 승률예측</b>
+<form action="" method="get">{% csrf_token %}
+     <div id="blueTeam">
+    	player 1 : <input type='text' name="blue1"> <br>
+		player 2 : <input type='text' name="blue2"> <br>
+		player 3 : <input type='text' name="blue3"> <br>
+		player 4 : <input type='text' name="blue4"> <br>
+		player 5 : <input type='text' name="blue5"> <br>
+	</div>
+     <div id="purpleTeam">
+     	<input type='text' name="purple1"> : player 1<br>
+		<input type='text' name="purple2"> : player 2<br>
+		<input type='text' name="purple3"> : player 3<br>
+		<input type='text' name="purple4"> : player 4<br>
+		<input type='text' name="purple5"> : player 5<br>
+     </div>
+<br>
+	<input type="button" value="예측" id='btn1'>
+</form>
+<div>
+
+
+</div>
+
+
 </body>
 </html>

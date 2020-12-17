@@ -3,43 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<style>
- #blueTeam {
-  float:left; width:600px; height:200px;}
- #purpleTeam {
-  display:inline-block; width:600px; height:200px; margin-left:10px;}  
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style type="text/css">
+
 </style>
-<body>
+</head>
+<body bgcolor="">
 <header>
-<a href="/">메인</a>
-<a href="/champion/statistics/">챔피언 분석</a>
-<a href="/statistics/champion/">통계</a>
-<a href="/multi/query=">승리예측</a>
-{{head|safe}}
-<a href='/board/list/'>커뮤니티</a> <!-- 게시판에 디비정보 없어서 등록 에러뜸-->
+{%include 'main_top.html'%}
 </header>
 <b>여기가 승률예측</b>
-<form action="" method="get">{% csrf_token %}
-     <div id="blueTeam">
-    	player 1 : <input type='text' name="blue1"> <br>
-		player 2 : <input type='text' name="blue2"> <br>
-		player 3 : <input type='text' name="blue3"> <br>
-		player 4 : <input type='text' name="blue4"> <br>
-		player 5 : <input type='text' name="blue5"> <br>
-	</div>
-     <div id="purpleTeam">
-     	<input type='text' name="purple1"> : player 1<br>
-		<input type='text' name="purple2"> : player 2<br>
-		<input type='text' name="purple3"> : player 3<br>
-		<input type='text' name="purple4"> : player 4<br>
-		<input type='text' name="purple5"> : player 5<br>
-     </div>
-<br>
-	<input type="button" value="예측" id='btn1'>
-</form>
-<div>
+<table border="1">
+<tr>
+<td>
 
+</td>
+</tr>
+</table>
+</body>
+</html>
 
 </div>
 

@@ -4,10 +4,12 @@ import ast
 import MySQLdb
 from django.http.response import HttpResponse
 import json
+import os.path
 
 # 여기는 챔피언 분석 및 상세 페이지 입니다.
 try:
-    with open('C:/Users/pjy/git/lol_project/lol_pro/loldb.txt', 'r') as f:
+    path = os.path.abspath(os.path.dirname(__file__))
+    with open(path+'/loldb.txt', 'r') as f:
         config = f.read()
         config = ast.literal_eval(config) 
 except Exception as e:

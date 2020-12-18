@@ -5,7 +5,9 @@ import MySQLdb
 from django.http.response import HttpResponse
 import json
 import os.path
-
+import collections
+from lol.views.char_info import skill, spell, lun, startitem, itembuild, shoes
+ 
 # 여기는 챔피언 분석 및 상세 페이지 입니다.
 try:
     path = os.path.abspath(os.path.dirname(__file__))
@@ -45,34 +47,47 @@ def StatisticsFunc(request):
         champ = Champion.objects.all()
         #print(champ)
         return render(request, 'champion/statistics.html', {'cham':champ})
-
-
     
 def StatisticsChaFunc(request):
     cname = request.GET['cname']
-    print(cname)
+    #print(cname)
     
     try:
-        """
         conn = MySQLdb.connect(**config)
         cursor = conn.cursor()
         sql = '''
-        select cname, cimg, pname from champion inner join pos on cname = cirum where pname = '{}'
-        '''.format()
+        select * from champion inner join pos on cname = cirum where cname = '{}'
+        '''.format(cname)
         cursor.execute(sql)
         data = cursor.fetchall()
-        #print(data[0])
-        datas = []
-        for i in data:
-            dic ={'cname':i[0],'cimg':i[1],'pname':i[2]}
-            datas.append(dic)
-        #print(datas)
-      """  
-        pass
+        char_pos = []
+        for d in data:
+            cp = list(collections.OrderedDict.fromkeys(d).keys())
+            char_pos.append(cp)        
+        pno = char_pos[0][3]
+        
+        # 캐릭터 정보 받아오는 곳
+        #print(char_pos)           # 챔프/포지션
+        skills = skill(pno) # 스킬
+        spells = spell(pno) # 스펙
+        luns = lun(pno)     # 룬
+        startitems = startitem(pno)
+        itembuilds = itembuild(pno)
+        shoess = shoes(pno)
+#         print(char_pos)
+        print(skills)
+#         print(spells)
+#         print(luns)
+#         print(startitems)
+#         print(itembuilds)
+#         print(shoess)
+        datas = {'char_pos':char_pos,'skill':skills,'spell':spells,'lun':luns,'sitem':startitems,'build':itembuilds,'shoes':shoess}
+        return render(request, 'champion/champion_detail.html' , {'cdata':datas})
+        
+        
     except Exception as e2:
         print("postion ajax err : " + str(e2))    
     finally:
-#         cursor.close()
-#         conn.close()    
-        pass
-    return render(request, 'champion/champion_detail.html')
+        cursor.close()
+        conn.close()    
+        

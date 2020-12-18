@@ -75,7 +75,7 @@ def StatisticsChaFunc(request):
         itembuilds = itembuild(pno)
         shoess = shoes(pno)
 #         print(char_pos)
-        print(skills)
+#        print(skills)
 #         print(spells)
 #         print(luns)
 #         print(startitems)

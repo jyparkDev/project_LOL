@@ -7,20 +7,252 @@
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <style type="text/css">
+table{
+margin: auto;
+text-align: center;
+width: 60%;
+height: 100px;
+background-color: white;
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table2 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #548DCA;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #548DCA;
+}
+
+.styled-table2 thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table2 {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table2 th,
+.styled-table2 td {
+    padding: 12px 15px;
+}
+
+.styled-table2 tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table2 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table2 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+
+.styled-table2 tbody tr:last-of-type {
+    border-bottom: 2px solid #D05A53;
+}
+
+.styled-table2 tbody tr.active-row2 {
+    font-weight: bold;
+    color: #D05A53;
+}
+
+.styled-table3 thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table3 {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table3 th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table3 tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table3 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table3 tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table3 tbody tr.active-row3 {
+    font-weight: bold;
+    color: #009879;
+}
+
 
 </style>
 </head>
-<body bgcolor="">
+<body style="background-color: #EAEAEA; text-align: center;">
 <header>
 {%include 'main_top.html'%}
 </header>
-<b>여기가 승률예측</b>
-<table border="1">
-<tr>
-<td>
 
-</td>
+<!-- 검색 버튼 -->
+<div class="container">
+	<div class="row">
+        <div class="span12">
+            <form id="custom-search-form" class="form-search form-horizontal pull-right">
+                <div class="input-append span12">
+                    <input type="text" class="search-query" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)">
+                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                </div>
+            </form>
+        </div>
+	</div>
+</div>
+
+<!-- 모스트 1 -->
+<table class="styled-table3">
+<tr class="active-row3">
+<td rowspan="3">이미지</td><td>소환사명</td><td>그림 + 승률% (x승 x패) + 평점</td>
+</tr>
+<tr>
+<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
+</tr>
+<tr>
+<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
 </tr>
 </table>
+<br>
+
+<!-- 모스트 2 -->
+<table class="styled-table3">
+<tr class="active-row3">
+<td rowspan="3">이미지</td><td>소환사명</td><td>그림 + 승률% (x승 x패) + 평점</td>
+</tr>
+<tr>
+<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
+</tr>
+<tr>
+<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
+</tr>
+</table>
+<br>
+
+<!-- 모스트 3 -->
+<table class="styled-table3">
+<tr class="active-row3">
+<td rowspan="3">이미지</td><td>소환사명</td><td>그림 + 승률% (x승 x패) + 평점</td>
+</tr>
+<tr>
+<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
+</tr>
+<tr>
+<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
+</tr>
+</table>
+<br>
+
+<!-- 승리팀 테이블 -->
+<table class="styled-table">
+<tr class="active-row">
+<td><b>승리팀</b></td><td><b>티어</b></td><td><b>KDA</b></td><td><b>피해량</b></td><td><b>와드</b></td><td><b>CS</b></td><td><b>아이템</b></td>
+</tr>
+<tr>
+<td>승리팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+</tr>
+<tr>
+<td>승리팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+</tr>
+<tr>
+<td>승리팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+</tr>
+<tr>
+<td>승리팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+</tr>
+<tr>
+<td>승리팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+</tr>
+<tr>
+<td colspan="7">총 그래프</td>
+</tr>
+</table>
+<br><br>
+
+<!-- 패배팀 테이블 -->
+<table class="styled-table2">
+<tr class="active-row2">
+<td><b>패배팀</b></td><td><b>티어</b></td><td><b>KDA</b></td><td><b>피해량</b></td><td><b>와드</b></td><td><b>CS</b></td><td><b>아이템</b></td>
+</tr>
+<tr>
+<td>패배팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+</tr>
+<tr>
+<td>패배팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+</tr>
+<tr>
+<td>패배팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+</tr>
+<tr>
+<td>패배팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+</tr>
+<tr>
+<td>패배팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+</tr>
+<tr>
+<td colspan="7">총 그래프</td>
+</tr>
+</table>
+<br><br>
 </body>
 </html>

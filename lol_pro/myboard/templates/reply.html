@@ -4,6 +4,59 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style type="text/css">
+table{
+margin: auto;
+text-align: center;
+width: 60%;
+height: 100px;
+background-color: white;
+}
+
+.styled-table thead tr {
+    background-color: #548DCA;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #548DCA;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #548DCA;
+}
+
+</style>
 <script type="text/javascript">
 window.onload = function(){
 	document.getElementById("btnReplyOk").onclick = function(){
@@ -19,14 +72,19 @@ function chkFunc(){
 	frm.submit(); //Ecma script 관심을 ㅠㅠ
 }
 </script>
-<body>
+<body style="background-color: #EAEAEA">
+<header>
+{%include 'main_top.html'%}
+</header>
+<h2 style="text-align: center;">댓글 작성</h2>
+<br><br>
 <form name="frm" action="/board/replyok/" method="post">{% csrf_token%}
 <input type="hidden" name="id" value="{{data_one.id}}">
 <input type="hidden" name="gnum" value="{{data_one.gnum}}">
 <input type="hidden" name="onum" value="{{data_one.onum}}">
 <input type="hidden" name="nested" value="{{data_one.nested}}">
-<table style="width: 70%;">
-	<tr>
+<table style="width: 40%;" class="styled-table">
+	<tr class="thead-dark">
 		<td>작성자 :</td>
 		<td><input type="text" name="name" placeholder="이름입력"></td>
 	</tr>
@@ -47,7 +105,7 @@ function chkFunc(){
 		<td><textarea rows="5" cols="50" name="cont" placeholder="내용입력"></textarea></td>
 	</tr>
 	<tr>
-		<td colspan="2"><input type="button" value="댓글등록" id="btnReplyOk"></td>
+		<td colspan="2"><input type="button" value="[댓글등록]" id="btnReplyOk"></td>
 	</tr>
 </table>
 </form>

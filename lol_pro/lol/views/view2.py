@@ -88,7 +88,7 @@ def StatisticsChaFunc(request):
     except Exception as e2:
         print("postion ajax err : " + str(e2))    
     finally:
-        cursor.close()
+        #cursor.close()
         conn.close()    
         
 def StatisticsChaFunc2(request):

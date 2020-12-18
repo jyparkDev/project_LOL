@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style>
+    * {
+        margin:0;
+        padding:0;
+        border:0;
+        font: 맑은고딕;
+        text-decoration:none;
+        letter-spacing:0px;
+        
+        
+    }
+    html {
+    height:100%;
+    }
+
+    .wrap
+    {
+        width:100%;
+        font-size:14px;
+        font-weight:bold;
+      
+
+        
+    }
+
+    .menubar
+    {
+        width:100%;
+        margin: 0 auto;
+        border:none;
+        background: #1D375F;
+        overflow: hidden;
+        
+    }
+
+    .menuLogo
+    {
+        width:100px;
+        float:left;
+    }
+
+    .menuItem
+    {
+        float:right;
+    }
+
+    .menubar ul
+    {
+        background: #1D375F;
+        height:50px;
+        list-style:none;
+    }
+
+    .menubar li
+    {
+        float:left;
+    }
+
+    .menubar a
+    {
+        color:#FFFFFF;
+        display:block;
+        font-weight:normal;
+        line-height:49px;
+        padding:1px 25px;
+        text-align:center;
+    }
+
+    .menubar li a:hover,
+    .menubar ul li:hover a {
+        background: #636363;
+        color:#FFFFFF;
+    }
+
+    .menubar li:hover ul
+    {
+        display:block;
+    }
+
+    .menubar li:hover li a
+    {
+        background:none;
+    }
+
+    .menubar li ul
+    {
+        background: #1D375F;
+        display:none;
+        height:auto;
+        position:absolute;
+        z-index:999;
+    }
+
+    .menubar li li a ,
+    .menubar li li
+    {
+        background: #1D375F;
+        display:block;
+        float:none;
+        min-width:135px;
+    }
+
+    .menubar li ul a
+    {
+        display:block;
+        height:50px;
+        font-size:12px;
+        font-style:normal;
+        padding:0px 10px 0px 15px;
+        text-align:left;
+    }
+
+    .menubar li ul a:hover,
+    .menubar li ul li:hover a{
+        background: #636363;
+        border:0px;
+        color:#ffffff;
+    }
+
+    </style>
+</head>
+
+<body style="font-family:Sans-Serif">
+    <form id="form1" runat="server">
+    <div class="wrap">
+        <div class="menubar">
+            <div class="menuLogo">
+                <a href="/">LoL</a>
+            </div>
+            <ul class="menuItem">
+
+                <li>
+                    <a href="/champion/statistics/">챔피언 분석</a>
+                    <ul>
+                        <li><a href="/champion/statistics/">챔피언 분석</a></li>
+                     
+                    </ul>
+                </li>
+                <li>
+                    <a href="/statistics/champion/">통계</a>
+                    <ul>
+                        <li><a href="/statistics/champion/">챔피언별 게임 통계 </a></li>
+                        <li><a href="/statistics/tier/">티어별 게임 통계</a></li>
+                    </ul>
+                </li>
+                <li>
+                	<a href="/multi/query=">승리예측</a>
+                	<ul>
+                        <li><a href="#">SubMenu01</a></li>
+                        <li><a href="#">SubMenu02</a></li>
+                    </ul>
+                </li>
+                <li><a href="/board/list/">커뮤니티</a>
+                <ul>
+                        <li><a href="#">SubMenu01</a></li>
+                        <li><a href="#">SubMenu02</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

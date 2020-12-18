@@ -91,3 +91,6 @@ def StatisticsChaFunc(request):
         cursor.close()
         conn.close()    
         
+def StatisticsChaFunc2(request):
+    return render(request, 'champion/champion_detail2.html')
+        

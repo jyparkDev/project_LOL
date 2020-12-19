@@ -4,7 +4,7 @@ import numpy as np
 import io
 import urllib, base64
 from pandas import DataFrame
-
+from collections import Counter
 # import matplotlib.pyplot as plt
 # import numpy as np
 # 여기는 통계 전용 페이지 입니다.
@@ -37,6 +37,7 @@ def TierFunc(request):
     plt.ylabel('게임당 KDA')
     plt.xticks(rotation=20)
     plt.legend()
+    plt.grid(True)
     fig = plt.gcf()
     buf = io.BytesIO()
     fig.savefig(buf, format = 'png')
@@ -81,7 +82,6 @@ def TierFunc(request):
     # 칼럼
     indexs = ['lron', 'bronze', 'Silver', 'Gold', 'Platinum', 'Diamond','Master','Grand Master','Challenger']
     my_colors = ('#ffc659','#91D54C','#00CFBC','#00A0D2')
-    width = 0.7   
     # 시각화 저장 객체
     fig = plt.figure() 
 
@@ -89,22 +89,33 @@ def TierFunc(request):
     datas = {'Ⅰ':[1.13,5.78,5.61,3.07,1.58,0.14,0.08,0.01,0.01], 'Ⅱ':[0.53,5.04,8.24,5.47,1.59,0.29,np.nan,np.nan,np.nan],\
              'Ⅲ':[0.27,2.7,7.9,7.75,2.57,0.58,np.nan,np.nan,np.nan],'Ⅳ':[0.11,2.37,11.09,16.35,7.92,1.82,np.nan,np.nan,np.nan]} 
     df = DataFrame(datas, index=indexs)
-    width = 0.5     
-    ax = df.plot(kind='bar', width=width, stacked=True, color=my_colors)
+    
 
+    width = 0.7
+    ax = df.plot(kind='bar', width=width, stacked=True, color=my_colors)
+    plt.ylim(0,40)
     plt.ylabel('점유율')
     plt.title('tier')
-    plt.xticks(rotation=20)
-    for p in ax.patches:
-        print(p.get_bbox())
+    plt.xticks(rotation=20) # 기울기
+    
+    # 비율 값 저장
+    imsi = []
+    for i in indexs[:-3]:
+        imsi.append(sum(df.T[i]))
+#         print(imsi) [2.04, 15.89, 32.84, 32.64, 13.66, 2.83]
+
+    for i, p in enumerate(ax.patches):
         left, bottom, width, height = p.get_bbox().bounds
-        ax.annotate("%.2f%%"%(height*1), xy=(left+width/2, bottom+height/2), ha='center', va='center')
-#     for ii,rect in enumerate(ax):
-#        h1 = rect.get_height()
+        if i in (1,2,3,4, 6,7,8,10,11,12,13,19,20,21,22, 28,29,30,31,32):
+            ax.annotate("%.2f%%"%(height*1), xy=(left+width/2, bottom+height/2),color='white', ha='center', va='center')
+            
+        if i in range(27,33):
+            ax.annotate("%.2f%%"%imsi[i-27], xy=(left+width/2, bottom + height+1),color='blue', ha='center', va='top')
+    
     plt.sca(ax)
     plt.box(False)
     plt.legend()
-    
+
     fig = plt.gcf()
     buf = io.BytesIO()
     fig.savefig(buf, format = 'png')

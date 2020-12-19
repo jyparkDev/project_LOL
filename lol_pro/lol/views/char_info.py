@@ -12,6 +12,30 @@ try:
 except Exception as e:
     print("DB config read err : " + str(e))
     
+def char_poss(name):    
+    try:
+        conn = MySQLdb.connect(**config)
+        cursor = conn.cursor()
+        sql = '''
+        select * from champion inner join pos on cname = cirum where cname = '{}'
+        '''.format(name)
+        cursor.execute(sql)
+        data = cursor.fetchall()
+        char_pos = []
+        for d in data:
+            cp = list(collections.OrderedDict.fromkeys(d).keys())
+            char_pos.append(cp)   
+        print(char_pos)
+        
+        return char_pos
+             
+    except Exception as e2:
+        print("charter err : " + str(e2))  
+          
+    finally:
+        cursor.close()
+        conn.close()    
+         
 def skill(pno):
     try:
         conn = MySQLdb.connect(**config)

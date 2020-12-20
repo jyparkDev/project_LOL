@@ -4,17 +4,61 @@ import numpy as np
 import io
 import urllib, base64
 from pandas import DataFrame
-from collections import Counter
-# import matplotlib.pyplot as plt
-# import numpy as np
+import os.path
+from lol.models import Champion
+import ast
+import json
+import pandas as pd
+
 # 여기는 통계 전용 페이지 입니다.
+try:
+    path = os.path.abspath(os.path.dirname(__file__))
+    with open(path+'/loldb.txt', 'r') as f:
+        config = f.read()
+        config = ast.literal_eval(config) 
+except Exception as e:
+    print("DB config read err : " + str(e))
 
+# 챔피언
 def ChampionFunc(request):
-#     import matplotlib.pyplot as plt
+    # DB에 있는 챔피언 값 불러오기
+    champ = Champion.objects.all() # 챔프 이미지
+    champdata = {}
+    # champ.objects data type -> dataFrame type
+    for i in champ:
+        champdata[i.cname] = i.cimg
+    c_df = pd.DataFrame(data=[list(champdata.values())],columns=list(champdata.keys())).T
+    c_df = c_df.reset_index()
+    c_df.columns = ['championName', 'cimg']
+    
+    # 그랜드 마스터 유저들의 플레이 데이터 값을 dataFrame으로 객체 생성
+    path = os.path.abspath(os.path.dirname(__file__))
+    data = pd.read_csv(path+'/09champion_statistic.csv')
 
-    return render(request, 'statistics/champion.html')
+    data['championId'] = data['championId'].astype(str)
+    ccode = path + '/ccode.json'
+    with open(ccode, "r",  encoding = 'UTF-8') as json_file:
+        cdata = json.load(json_file)
+        df = pd.DataFrame(data=[list(cdata.values())],columns=list(cdata.keys())).T
+        df = df.reset_index()
+        df.columns=['championId', 'championName']
+        df['championId'] = df['championId'].astype(str)
+        
+    # dict type 합치기1
+    merged_df = (pd.merge(df,data,how='left' ,left_on=['championId'], right_on=['championId']).reindex(columns=list(df.columns).extend(list(data.columns))))
+    merged_df = merged_df.sort_values(by="count", ascending=False)
+    # dict type 합치기2
+    datas = (pd.merge(merged_df, c_df,how='left', left_on=['championName'], right_on=['championName']).reindex(columns=list(df.columns).extend(list(data.columns))))
+    datas = datas.sort_values(by="winRate", ascending=False)
+
+    # 반환 값
+    all_data = {}
+    all_data = datas.to_dict('records')
+    
+    return render(request, 'statistics/champion.html', {'all_data':all_data})
 
 
+# 그래프 
 def TierFunc(request):
     plt.rc('font', family='malgun gothic') # 한글 깨짐 방지용 폰트
     
@@ -106,9 +150,12 @@ def TierFunc(request):
 
     for i, p in enumerate(ax.patches):
         left, bottom, width, height = p.get_bbox().bounds
-        if i in (1,2,3,4, 6,7,8,10,11,12,13,19,20,21,22, 28,29,30,31,32):
+        if i in (1,2,3,4, 10,11,12,13,19,20,21,22, 28,29,30,31,32):
             ax.annotate("%.2f%%"%(height*1), xy=(left+width/2, bottom+height/2),color='white', ha='center', va='center')
             
+        if i in (6,7,8):
+            ax.annotate("%.2f%%"%(height*1), xy=(left+width/2, bottom+height/2),color='blue', ha='center', va='center')
+             
         if i in range(27,33):
             ax.annotate("%.2f%%"%imsi[i-27], xy=(left+width/2, bottom + height+1),color='blue', ha='center', va='top')
     

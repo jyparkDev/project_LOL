@@ -71,48 +71,31 @@ background-color: white;
 <tr class="active-row">
 <td>챔피언</td><td>승률</td><td>플레이수</td><td>평점</td><td>CS</td><td>골드</td>
 </tr>
+
+{% if all_data %}
+{% for d in all_data %}
+	
 <tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
+	<td>	
+		<a href="/champion/champion_detail?cname={{d.championName}}">
+			<img src = "/static/images/{{d.cimg}}" width="64px" height="15px">
+			
+		</a>
+		<cite>{{d.championName}}</cite>
+	</td>
+	<td>
+		{% widthratio d.winRate 1.00 100 %} %
+	</td>
+	<td>{% widthratio d.count 1 1 %}</td>
+	<td><b>{% widthratio d.kda 1 1 %}</b></td>
+	<td>{% widthratio d.totalMinionsKilled 1 1 %}</td>
+	<td>{% widthratio d.goldEarned 1 1 %}</td>
 </tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
-<tr>
-<td>이미지 + 챔프명</td><td>승률 %</td><td>플레이수</td><td><b>평점</b></td><td>CS</td><td>골드</td>
-</tr>
+{% endfor %}
+{% else %}
+
+<h3>챔피언 정보를 점검중 입니다!!</h3>
+{% endif %}
 <!-- tr부분 반복 => 153개 데이터 모두?? -->
 </table>
 

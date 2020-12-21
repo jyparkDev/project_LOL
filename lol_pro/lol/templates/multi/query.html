@@ -7,13 +7,7 @@
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <style type="text/css">
-table{
-margin: auto;
-text-align: center;
-width: 60%;
-height: 100px;
-background-color: white;
-}
+
 
 .styled-table thead tr {
     background-color: #009879;
@@ -29,6 +23,7 @@ background-color: white;
     font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 60%;
 }
 
 .styled-table th,
@@ -72,6 +67,7 @@ background-color: white;
     font-family: sans-serif;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 60%;
 }
 
 .styled-table2 th,
@@ -88,7 +84,7 @@ background-color: white;
 }
 
 .styled-table2 tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+    background-color: ##EAEAEA;
 }
 
 
@@ -140,11 +136,60 @@ background-color: white;
 }
 #box_1 {
 	float:left; width:200px; height:100px;
+	text-align: center;
+	margin: auto;
 }
 
 #box_2 {
 	display:inline-block; width:200px; height:100px;
+	text-align: center;
+	margin: auto;
 }
+
+
+
+
+.styled-table3 thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table3 {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 50%;
+    text-align: center;
+}
+
+.styled-table3 th,
+.styled-table3 td {
+    padding: 12px 15px;
+}
+
+.styled-table3 tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table3 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+
+.styled-table3 tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table3 tbody tr.active-row {
+    font-weight: bold;
+    color: #548DCA;
+}
+
 </style>
 </head>
 <body style="background-color: #EAEAEA; text-align: center;">
@@ -168,8 +213,12 @@ background-color: white;
  'neutralMinionsKilledTeamJungle', 'neutralMinionsKilledEnemyJungle', 'neutralMinionsKilled', 'visionScore', 'wardsPlaced', 'wardsKilled', 'kda']
  kda, totalDamageDealtToChampions, wardsPlaced, totalMinionsKilled, goldEarned, summonerName
 -->
+<table class="styled-table3">
+<tr>
+<td>
+
 <form action="/multi/requery/" method="post">{% csrf_token %}
-<div id="">
+
 	<div id=box_1>
 	<h4>blue팀</h4><br>
         <input type="text" class="search-query" placeholder="소환사 명" name="blue1" value="T1 제우스">
@@ -178,17 +227,23 @@ background-color: white;
         <input type="text" class="search-query" placeholder="소환사 명" name="blue4" value="viper3">
         <input type="text" class="search-query" placeholder="소환사 명" name="blue5" value="곽곽보성">
 	</div>
-<div id=box_2>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+	<div id=box_2>
 	<h4>purple팀</h4><br>
         <input type="text" class="search-query" placeholder="소환사 명" name="purple1" value="칸 나">
         <input type="text" class="search-query" placeholder="소환사 명" name="purple2" value="T1 Oner">
         <input type="text" class="search-query" placeholder="소환사 명" name="purple3" value="T1 Fisher">
         <input type="text" class="search-query" placeholder="소환사 명" name="purple4" value="T1 Gumayusi">
         <input type="text" class="search-query" placeholder="소환사 명" name="purple5" value="T1 Keria">
-</div>
-</div>
+
 <button type="submit" class="btn"><i class="icon-search"></i></button>
 </form>
+</td>
+</tr>
+</table>
+
+<br>
+
 <!-- 승리팀 테이블 -->
 <table class="styled-table">
 <tr class="active-row">

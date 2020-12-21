@@ -138,71 +138,48 @@ background-color: white;
     font-weight: bold;
     color: #009879;
 }
+#box_1 {
+	float:left; width:200px; height:100px;
+}
 
-
+#box_2 {
+	display:inline-block; width:200px; height:100px;
+}
 </style>
 </head>
 <body style="background-color: #EAEAEA; text-align: center;">
 <header>
 {%include 'main_top.html'%}
 </header>
-
-<!-- 검색 버튼 -->
+<!-- 검색 버튼
 <div class="container">
 	<div class="row">
         <div class="span12">
-            <form id="custom-search-form" class="form-search form-horizontal pull-right">
                 <div class="input-append span12">
-                    <input type="text" class="search-query" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)">
-                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                    <input type="text" class="search-query" placeholder="소환사 명" name="blue1">
                 </div>
-            </form>
         </div>
 	</div>
+</div> 
+-->
+<form action="query/" method="post">{% csrf_token %}
+	<div id=box_1>
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue1">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue2">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue3">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue4">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue5">
+	</div>
+<div id=box_2>
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple1">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple2">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple3">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple4">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple5">
 </div>
 
-<!-- 모스트 1 -->
-<table class="styled-table3">
-<tr class="active-row3">
-<td rowspan="3">이미지</td><td>소환사명</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-</table>
-<br>
-
-<!-- 모스트 2 -->
-<table class="styled-table3">
-<tr class="active-row3">
-<td rowspan="3">이미지</td><td>소환사명</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-</table>
-<br>
-
-<!-- 모스트 3 -->
-<table class="styled-table3">
-<tr class="active-row3">
-<td rowspan="3">이미지</td><td>소환사명</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-</table>
-<br>
-
+<button type="submit" class="btn"><i class="icon-search"></i></button>
+</form>
 <!-- 승리팀 테이블 -->
 <table class="styled-table">
 <tr class="active-row">

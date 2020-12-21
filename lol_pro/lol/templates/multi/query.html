@@ -138,119 +138,89 @@ background-color: white;
     font-weight: bold;
     color: #009879;
 }
+#box_1 {
+	float:left; width:200px; height:100px;
+}
 
-
+#box_2 {
+	display:inline-block; width:200px; height:100px;
+}
 </style>
 </head>
 <body style="background-color: #EAEAEA; text-align: center;">
 <header>
 {%include 'main_top.html'%}
 </header>
-
-<!-- 검색 버튼 -->
+<!-- 검색 버튼
 <div class="container">
 	<div class="row">
         <div class="span12">
-            <form id="custom-search-form" class="form-search form-horizontal pull-right">
                 <div class="input-append span12">
-                    <input type="text" class="search-query" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)">
-                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                    <input type="text" class="search-query" placeholder="소환사 명" name="blue1">
                 </div>
-            </form>
         </div>
 	</div>
+</div> 
+['cautious mid', '엘리멘트 미스틱', 'd0 myself ', '분열 하 다', 'yyyyxxxxzzzz']
+['Riverzz', 'BJ갈배', 'Blooming Lily', 'Heimish kingmono', 'ge ju tai xiao']
+'damageDealtToObjectives', 'totalDamageDealtToChampions', 'damageDealtToTurrets', 'inhibitorKills', 'firstTowerKill',
+ 'turretKills', 'goldEarned', 'goldSpent', 'champLevel', 'totalMinionsKilled', 'firstBloodKill', 'firstInhibitorKill', 
+ 'neutralMinionsKilledTeamJungle', 'neutralMinionsKilledEnemyJungle', 'neutralMinionsKilled', 'visionScore', 'wardsPlaced', 'wardsKilled', 'kda']
+ kda, totalDamageDealtToChampions, wardsPlaced, totalMinionsKilled, goldEarned, summonerName
+-->
+<form action="/multi/requery/" method="post">{% csrf_token %}
+	<div id=box_1>
+	<h4>blue팀</h4><br>
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue1" value="칸 나">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue2" value="T1 Oner">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue3" value="Hide on bush">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue4" value="viper3">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue5" value="곽곽보성">
+	</div>
+<div id=box_2>
+	<h4>purple팀</h4><br>
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple1" value="T1 제우스">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple2" value="T1 Cuzz">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple3" value="T1 Fisher">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple4" value="T1 Gumayusi">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple5" value="T1 Keria">
 </div>
 
-<!-- 모스트 1 -->
-<table class="styled-table3">
-<tr class="active-row3">
-<td rowspan="3">이미지</td><td>소환사명</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-</table>
-<br>
-
-<!-- 모스트 2 -->
-<table class="styled-table3">
-<tr class="active-row3">
-<td rowspan="3">이미지</td><td>소환사명</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-</table>
-<br>
-
-<!-- 모스트 3 -->
-<table class="styled-table3">
-<tr class="active-row3">
-<td rowspan="3">이미지</td><td>소환사명</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-<tr>
-<td>티어</td><td>그림 + 승률% (x승 x패) + 평점</td>
-</tr>
-</table>
-<br>
-
+<button type="submit" class="btn"><i class="icon-search"></i></button>
+</form>
 <!-- 승리팀 테이블 -->
 <table class="styled-table">
 <tr class="active-row">
-<td><b>승리팀</b></td><td><b>티어</b></td><td><b>KDA</b></td><td><b>피해량</b></td><td><b>와드</b></td><td><b>CS</b></td><td><b>아이템</b></td>
+<td><b>Blue팀</b></td><td><b>KDA</b></td><td><b>피해량</b></td><td><b>와드</b></td><td><b>CS</b></td><td><b>획득 골드량</b></td>
 </tr>
+{% if blue %}
+{% for b in blue %}
 <tr>
-<td>승리팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+<td>{{b.summonerName}}</td><td>{{b.kda}}</td><td>{{b.totalDamageDealtToChampions}}</td><td>{{b.wardsPlaced}}</td><td>{{b.totalMinionsKilled}}</td><td>{{b.goldEarned}}</td>
 </tr>
+{% endfor %}
+{% endif %}
 <tr>
-<td>승리팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
-</tr>
-<tr>
-<td>승리팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
-</tr>
-<tr>
-<td>승리팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
-</tr>
-<tr>
-<td>승리팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
-</tr>
-<tr>
-<td colspan="7">총 그래프</td>
+<td colspan="7">{{key1}}</td>
 </tr>
 </table>
-<br><br>
-
+<br>
+<b style="text-align: center;">{{key3}}</b>
+<br>
 <!-- 패배팀 테이블 -->
 <table class="styled-table2">
 <tr class="active-row2">
-<td><b>패배팀</b></td><td><b>티어</b></td><td><b>KDA</b></td><td><b>피해량</b></td><td><b>와드</b></td><td><b>CS</b></td><td><b>아이템</b></td>
+<td><b>Purple팀</b></td><td><b>KDA</b></td><td><b>피해량</b></td><td><b>와드</b></td><td><b>CS</b></td><td><b>획득 골드량</b></td>
 </tr>
+{% if purple %}
+{% for p in purple %}
 <tr>
-<td>패배팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
+<td>{{p.summonerName}}</td><td>{{p.kda}}</td><td>{{p.totalDamageDealtToChampions}}</td><td>{{p.wardsPlaced}}</td><td>{{p.totalMinionsKilled}}</td><td>{{p.goldEarned}}</td>
 </tr>
+{% endfor %}
+{% endif %}
 <tr>
-<td>패배팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
-</tr>
-<tr>
-<td>패배팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
-</tr>
-<tr>
-<td>패배팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
-</tr>
-<tr>
-<td>패배팀 팀원</td><td>gold</td><td>KDA량</td><td>피해량 그래프</td><td>와드</td><td>CS</td><td>아이템 이미지</td>
-</tr>
-<tr>
-<td colspan="7">총 그래프</td>
+<td colspan="7">{{key2}}</td>
 </tr>
 </table>
 <br><br>

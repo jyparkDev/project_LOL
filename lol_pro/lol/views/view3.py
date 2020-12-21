@@ -33,10 +33,10 @@ def ChampionFunc(request):
     
     # 그랜드 마스터 유저들의 플레이 데이터 값을 dataFrame으로 객체 생성
     path = os.path.abspath(os.path.dirname(__file__))
-    data = pd.read_csv(path+'/09champion_statistic.csv')
+    data = pd.read_csv(path+'/model/09champion_statistic.csv')
 
     data['championId'] = data['championId'].astype(str)
-    ccode = path + '/ccode.json'
+    ccode = path + '/model/ccode.json'
     with open(ccode, "r",  encoding = 'UTF-8') as json_file:
         cdata = json.load(json_file)
         df = pd.DataFrame(data=[list(cdata.values())],columns=list(cdata.keys())).T

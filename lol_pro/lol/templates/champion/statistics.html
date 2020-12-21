@@ -113,38 +113,6 @@ background-color: white;
 </style>
 <script type="text/javascript">
 
-$(document).ready(function(){
-	$(".").click(function(){
-		alert("hi")
-	}
-}
-	$("#btnOk").click(function(){
-		//alert("a");
-		var msg =$("#msg").val();
-		$(".showData").empty();
-
-		$.ajax({
-			url:'/statistics_all',
-			type:'get',
-			data:{'msg':msg},
-			dataType:'json',
-			success:function(data){
-				//alert(data);
-				var str = "<table border='1'>"
-				str += ""
-				count = 0;
-				$.each(data, function(ind, entry){
-					
-		
-			},
-			error:function(){
-				$(".showData").text("처리오류");
-						
-			}
-			});
-		});
-	});
-	
 window.onload = function () { 
 	startLoadFile(); 
 }; 
@@ -163,21 +131,6 @@ function startLoadFile(){
 				} 
 		}); 
 		} 
-		// JSON 포멧 데이터 처리 
-	
-function createImages(objImageInfo) { 
-	var images = objImageInfo.images; 
-	var strDOM = ""; 
-	for (var i = 0; i < images.length; i++) { // N번째 이미지 정보를 구하기 
-		var image = images[i]; // N번째 이미지 패널을 생성 
-		strDOM += '<div class="image_panel">'; 
-		strDOM += ' '<img src="' + image.url + '">'; 
-		strDOM += ' '<p class="title">' + image.title + ''</p>'; 
-		strDOM += ''</div>'; } // 이미지 컨테이너에 생성한 이미지 패널들을 추가하기 
-		var $imageContainer = $("#image_container"); 
-		$imageContainer.append(strDOM); 
-		}
-
 </script>
 <script>
 function position(pos){

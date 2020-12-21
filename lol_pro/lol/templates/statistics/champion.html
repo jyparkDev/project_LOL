@@ -182,7 +182,7 @@ background-color: white;
 <br>
 <table class="styled-table">
 <tr class="active-row">
-<td>챔피언</td><td>승률</td><td>플레이수</td><td>평점</td><td>CS</td><td>골드</td>
+<td>챔피언</td><td>승률↓</td><td>플레이수</td><td>평점</td><td>CS</td><td>골드</td>
 </tr>
 
 {% if all_data %}
@@ -191,7 +191,7 @@ background-color: white;
 <tr>
 	<td>	
 		<a href="/champion/champion_detail?cname={{d.championName}}">
-			<img src = "/static/images/{{d.cimg}}" width="64px" height="15px">
+			<img src = "/static/images/{{d.cimg}}" width="40px" height="15px" style="border-radius: 3em;">
 			
 		</a>
 		<cite>{{d.championName}}</cite>

@@ -45,7 +45,8 @@ background-color: white;
 
         label:hover {
             color: #2e9cdf;
-            cursor: pointer;}
+            cursor: pointer;
+            }
 
         /*input 클릭시, label 스타일*/
         input:checked + label {
@@ -57,7 +58,10 @@ background-color: white;
         #tab1:checked ~ #content1,
         #tab2:checked ~ #content2,
         #tab3:checked ~ #content3,
-        #tab4:checked ~ #content4 {
+        #tab4:checked ~ #content4,
+        #tab5:checked ~ #content5,
+        #tab6:checked ~ #content6,
+        #tab7:checked ~ #content7 {
             display: block;}
 
     #custom-search-form {
@@ -257,15 +261,16 @@ function position(pos){
 
 
 <!-- 정렬방법 1 -->
-<table >
+<table style="background-color: #EAEAEA">
 <tr>
 <td>
 <div id="image_container" class = 'image'> <!-- 이미지 마크업 생성 공간 --> 
 {% if cham %}
 {% for c in cham %}
 	<a href="/champion/champion_detail?cname={{c.cname}}">
-	<img src = "/static/images/{{c.cimg}}" width="64px" height="15px">
-	<cite>{{c.cname}}</cite>
+
+	<img src = "/static/images/{{c.cimg}}" width="64px" height="15px">{{c.cname}}
+
 	</a>
 {% endfor %}
 {% else %}

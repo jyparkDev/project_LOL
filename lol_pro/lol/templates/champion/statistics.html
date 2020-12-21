@@ -98,6 +98,14 @@ background-color: white;
         z-index: 3;   
     }
 
+.one table{
+margin: auto;
+text-align: center;
+width: 10%;
+height: 100px;
+background-color: white;
+}
+
 </style>
 <script type="text/javascript">
 
@@ -202,7 +210,9 @@ function position(pos){
 {%include 'main_top.html'%}
 </header>
 <br><br><br><br><br><br>
-<a href="/champion/champion_detail2/">dfs</a>
+<table>
+<tr>
+<td>
 <table class='test'>
 	<tr><td>
 	<div class="main">
@@ -239,13 +249,18 @@ function position(pos){
         </div>
 	</div>
 </div>
-		
+
+</div>
+</td>
+</tr>
+</table>		
+
+
 <!-- 정렬방법 1 -->
-<table border="1">
+<table >
 <tr>
 <td>
 <div id="image_container" class = 'image'> <!-- 이미지 마크업 생성 공간 --> 
-
 {% if cham %}
 {% for c in cham %}
 	<a href="/champion/champion_detail?cname={{c.cname}}">
@@ -262,6 +277,9 @@ function position(pos){
 </tr>
 </table>
 
-
+<!-- 전체테이블 끝 -->
+</td>
+</tr>
+</table>
 </body>
 </html>

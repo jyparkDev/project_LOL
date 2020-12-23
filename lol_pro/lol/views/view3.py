@@ -21,41 +21,52 @@ except Exception as e:
 
 # 챔피언
 def ChampionFunc(request):
+    keyword = request.GET.get('search')
+    
     # DB에 있는 챔피언 값 불러오기
     champ = Champion.objects.all() # 챔프 이미지
     champdata = {}
     # champ.objects data type -> dataFrame type
     for i in champ:
         champdata[i.cname] = i.cimg
+       
     c_df = pd.DataFrame(data=[list(champdata.values())],columns=list(champdata.keys())).T
     c_df = c_df.reset_index()
     c_df.columns = ['championName', 'cimg']
-    
+    print(c_df)
     # 그랜드 마스터 유저들의 플레이 데이터 값을 dataFrame으로 객체 생성
     path = os.path.abspath(os.path.dirname(__file__))
     data = pd.read_csv(path+'/model/09champion_statistic.csv')
-
     data['championId'] = data['championId'].astype(str)
+   
     ccode = path + '/model/ccode.json'
+    
     with open(ccode, "r",  encoding = 'UTF-8') as json_file:
         cdata = json.load(json_file)
+        
         df = pd.DataFrame(data=[list(cdata.values())],columns=list(cdata.keys())).T
         df = df.reset_index()
         df.columns=['championId', 'championName']
         df['championId'] = df['championId'].astype(str)
-        
+        print(df)
     # dict type 합치기1
     merged_df = (pd.merge(df,data,how='left' ,left_on=['championId'], right_on=['championId']).reindex(columns=list(df.columns).extend(list(data.columns))))
     merged_df = merged_df.sort_values(by="count", ascending=False)
+    print(merged_df.columns)
     # dict type 합치기2
     datas = (pd.merge(merged_df, c_df,how='left', left_on=['championName'], right_on=['championName']).reindex(columns=list(df.columns).extend(list(data.columns))))
-    datas = datas.sort_values(by="winRate", ascending=False)
-
+    datas = datas.sort_values(by=keyword, ascending=False)
+    print(datas.columns)
+    print('merged_df')
+    print(merged_df)
+    print()
+    print('datas')
+    print(datas)
     # 반환 값
     all_data = {}
     all_data = datas.to_dict('records')
     
-    return render(request, 'statistics/champion.html', {'all_data':all_data})
+    return render(request, 'statistics/champion.html', {'all_data':all_data,'sort':keyword})
 
 
 # 그래프 

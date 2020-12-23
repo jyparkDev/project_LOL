@@ -138,12 +138,14 @@
    float:left; width:200px; height:100px;
    text-align: center;
    margin: auto;
+   padding-left: 3.5em;
 }
 
 #box_2 {
    display:inline-block; width:200px; height:100px;
    text-align: center;
    margin: auto;
+   padding-left: 3em;
 }
 
 
@@ -200,26 +202,29 @@
 <tr>
 <td>
 
-<form action="/multi/requery/" method="post">{% csrf_token %}
+<form action="/multi/requery/" method="post" style="background-image:url('/static/images/mulimg.png'); background-size:cover;">{% csrf_token %}
 
    <div id=box_1>
-   <h4>blue팀</h4><br>
-        <input type="text" class="search-query" placeholder="소환사 명" name="blue1" value="T1 제우스">
-        <input type="text" class="search-query" placeholder="소환사 명" name="blue2" value="T1 Cuzz">
-        <input type="text" class="search-query" placeholder="소환사 명" name="blue3" value="Hide on bush">
-        <input type="text" class="search-query" placeholder="소환사 명" name="blue4" value="viper3">
-        <input type="text" class="search-query" placeholder="소환사 명" name="blue5" value="곽곽보성">
+   <h4 style="font-size: 200%; font-weight: bolder;">blue팀</h4><br>
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue1" value="T1 제우스" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue2" value="T1 Cuzz" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue3" value="Hide on bush" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue4" value="viper3" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue5" value="곽곽보성" style="opacity:85%; text-align: center; font-weight: bold;">
    </div>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
    <div id=box_2>
-   <h4>purple팀</h4><br>
-        <input type="text" class="search-query" placeholder="소환사 명" name="purple1" value="칸 나">
-        <input type="text" class="search-query" placeholder="소환사 명" name="purple2" value="T1 Oner">
-        <input type="text" class="search-query" placeholder="소환사 명" name="purple3" value="T1 Fisher">
-        <input type="text" class="search-query" placeholder="소환사 명" name="purple4" value="T1 Gumayusi">
-        <input type="text" class="search-query" placeholder="소환사 명" name="purple5" value="T1 Keria">
+   <h4  style="font-size: 200%; font-weight: bolder;">purple팀</h4><br>
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple1" value="칸 나" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple2" value="T1 Oner" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple3" value="T1 Fisher" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple4" value="T1 Gumayusi" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple5" value="T1 Keria" style="opacity:85%; text-align: center; font-weight: bold;">
 	</div>
-<button type="submit" class="btn"><i class="icon-search"></i></button>
+	<br>
+	<br>
+	<div><button type="submit" class="btn" style="width: 100pt; "><i class="icon-search"></i></button></div>
+
 </form>
 </td>
 </tr>

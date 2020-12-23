@@ -173,7 +173,7 @@ background-color: white;
 <!-- 세부 내역 메뉴바 -->
 <section class="blurry-menu" style="text-align: center;">
   <ul>
-    <li><a href="/statistics/champion/"><b>챔피언별 게임 통계</b></a></li>
+    <li><a href="/statistics/champion?search=winRate"><b>챔피언별 게임 통계</b></a></li>
     <li><a href="/statistics/tier/"><b>티어별 게임 통계</b></a></li>
   </ul>
 </section>
@@ -182,7 +182,32 @@ background-color: white;
 <br>
 <table class="styled-table">
 <tr class="active-row">
-<td>챔피언</td><td>승률↓</td><td>플레이수</td><td>평점</td><td>CS</td><td>골드</td>
+<td>챔피언</td>
+{% if sort == 'winRate' %}
+<td><a href="/statistics/champion?search=winRate">승률↓</a></td>
+{% else %}
+<td><a href="/statistics/champion?search=winRate">승률</a></td>
+{% endif %}
+{% if sort == 'count' %}
+<td><a href="/statistics/champion?search=count">플레이수↓</a></td>
+{% else %}
+<td><a href="/statistics/champion?search=count">플레이수</a></td>
+{% endif %}
+{% if sort == 'kda' %}
+<td><a href="/statistics/champion?search=kda">평점↓</a></td>
+{% else %}
+<td><a href="/statistics/champion?search=kda">평점</a></td>
+{% endif %}
+{% if sort == 'totalMinionsKilled' %}
+<td><a href="/statistics/champion?search=totalMinionsKilled">CS↓</a></td>
+{% else %}
+<td><a href="/statistics/champion?search=totalMinionsKilled">CS</a></td>
+{% endif %}
+{% if sort == 'goldEarned' %}
+<td><a href="/statistics/champion?search=goldEarned">골드↓</a></td>
+{% else %}
+<td><a href="/statistics/champion?search=goldEarned">골드</a></td>
+{% endif %}
 </tr>
 
 {% if all_data %}
@@ -196,9 +221,7 @@ background-color: white;
 		</a>
 		<cite>{{d.championName}}</cite>
 	</td>
-	<td>
-		{% widthratio d.winRate 1.00 100 %} %
-	</td>
+	<td>{% widthratio d.winRate 1.00 100 %} %</td>
 	<td>{% widthratio d.count 1 1 %}</td>
 	<td><b>{% widthratio d.kda 1 1 %}</b></td>
 	<td>{% widthratio d.totalMinionsKilled 1 1 %}</td>

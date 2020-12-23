@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+table{
+margin: auto;
+text-align: center;
+width: 60%;
+height: 100px;
+background-color: white;
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+.imgclass img{
+height: 30px;
+width: 30px;
+}
+
+</style>
+</head>
+<body style="background-color: #EAEAEA; text-align: center;" >
+<header>
+{%include 'main_top.html'%}
+<hr>
+</header>
+<br><br><br>
+<!-- 챔피언 프로필부분 -->
+<table class="styled-table">
+<tr class="active-row">
+<td colspan=""><a href="/champion/champion_detail?cname={{champion.cname}}">{{cdata.char_pos.0.2}}</a></td>
+<td><a href="/champion/champion_detail2">{{cdata.char_pos.1.2}}</td>
+</tr>
+
+<td rowspan="3"><img src="/static/images/{{cdata.char_pos.0.1}}"></td>
+<td colspan="2">{{cdata.char_pos.0.0}}</td>
+</tr>
+<tr>
+<td colspan="2"><h5 style="color: gold;"> 3 티어</h5></td>
+</tr>
+<tr>
+<td colspan="2"><img src="/static/images/{{cdata.skill.3}}"><img src="/static/images/{{cdata.skill.4}}">
+<img src="/static/images/{{cdata.skill.5}}"><img src="/static/images/{{cdata.skill.6}}"><img src="/static/images/{{cdata.skill.7}}"></td>
+</tr>
+
+</table>
+
+<hr>
+
+<!-- 종합부분 -->
+
+<table class="styled-table">
+<tr>
+<td colspan="2"><b>추천 소환사 주문</b></td>
+<td>픽률</td>
+<td>승률</td>
+</tr>
+<tr>
+<td colspan="2"><img src="/static/images/{{cdata.spell.0.3}}">&emsp;&emsp;<img src="/static/images/{{cdata.spell.0.4}}"></td>
+<td>{{cdata.spell.0.5}}</td>
+<td>{{cdata.spell.0.7}}</td>
+</tr>
+<tr>
+<td colspan="2"><img src="/static/images/{{cdata.spell.1.3}}">&emsp;&emsp;<img src="/static/images/{{cdata.spell.1.4}}"></td>
+<td>{{cdata.spell.1.5}}</td>
+<td>{{cdata.spell.1.7}}</td>
+</tr>
+<tr>
+<td colspan="2"><b>추천 스킬 빌드</b></td>
+<td>픽률</td>
+<td>승률</td>
+</tr>
+<tr>
+<td colspan="2"><img src="/static/images/{{cdata.skill.4}}"> > <img src="/static/images/{{cdata.skill.5}}"> > <img src="/static/images/{{cdata.skill.6}}"></td>
+<td rowspan="2">{{cdata.skill.23}}</td>
+<td rowspan="2">{{cdata.skill.25}}</td>
+</tr>
+<tr>
+<td colspan="2"><b>스킬트리</b></td>
+</tr>
+<tr>
+<table class="styled-table">
+<tr>
+<td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td>
+</tr>
+<tr>
+<td>{{cdata.skill.8}}</td>
+<td>{{cdata.skill.9}}</td>
+<td>{{cdata.skill.10}}</td>
+<td>{{cdata.skill.11}}</td>
+<td>{{cdata.skill.12}}</td>
+<td>{{cdata.skill.13}}</td>
+<td>{{cdata.skill.14}}</td>
+<td>{{cdata.skill.15}}</td>
+<td>{{cdata.skill.16}}</td>
+<td>{{cdata.skill.17}}</td>
+<td>{{cdata.skill.18}}</td>
+<td>{{cdata.skill.19}}</td>
+<td>{{cdata.skill.20}}</td>
+<td>{{cdata.skill.21}}</td>
+<td>{{cdata.skill.22}}</td>
+</tr>
+</table>
+</tr>
+</table><br>
+
+<!-- 2번째 -->
+<table class="styled-table">
+<tr>
+<td colspan="4"><b>추천 아이템 빌드</b></td>
+<td>픽률</td>
+<td>승률</td>
+</tr>
+<tr>
+<td rowspan="2"><b>시작아이템</b></td>
+<td colspan="3"> <img src="/static/images/{{cdata.sitem.0.3}}"> 
+{% if cdata.sitem.0.4 %}
+> <img src="/static/images/{{cdata.sitem.0.4}}"> &emsp;&emsp; </td>
+{% endif %}
+<td>{{cdata.sitem.0.5}}</td>
+<td>{{cdata.sitem.0.7}}</td>
+</tr>
+<tr>
+<td colspan="3"><img src="/static/images/{{cdata.sitem.1.3}}"> 
+{% if cdata.sitem.1.4 %}
+> <img src="/static/images/{{cdata.sitem.1.4}}"> &emsp;&emsp;</td>
+{% endif %}
+<td>{{cdata.sitem.1.5}}</td>
+<td>{{cdata.sitem.1.7}}</td>
+</tr>
+
+<tr>
+<td rowspan="5"><b>추천빌드</b></td>
+<td colspan="3"><img src="/static/images/{{cdata.build.0.3}}"> > 
+<img src="/static/images/{{cdata.build.0.4}}"> > 
+<img src="/static/images/{{cdata.build.0.5}}"></td>
+<td>{{cdata.build.0.6}}</td>
+<td>{{cdata.build.0.8}}</td>
+</tr>
+<tr>
+<td colspan="3"><img src="/static/images/{{cdata.build.1.3}}">> 
+<img src="/static/images/{{cdata.build.1.4}}"> > 
+<img src="/static/images/{{cdata.build.1.5}}"></td>
+<td>{{cdata.build.1.6}}</td>
+<td>{{cdata.build.1.8}}</td>
+</tr>
+<tr>
+<td colspan="3"><img src="/static/images/{{cdata.build.2.3}}">> 
+<img src="/static/images/{{cdata.build.2.4}}"> > 
+<img src="/static/images/{{cdata.build.2.5}}"></td>
+<td>{{cdata.build.2.6}}</td>
+<td>{{cdata.build.2.8}}</td>
+</tr>
+<tr>
+<td colspan="3"><img src="/static/images/{{cdata.build.3.3}}">> 
+<img src="/static/images/{{cdata.build.3.4}}"> > 
+<img src="/static/images/{{cdata.build.3.5}}"></td>
+<td>{{cdata.build.3.6}}</td>
+<td>{{cdata.build.3.8}}</td>
+</tr>
+<tr>
+<td colspan="3"><img src="/static/images/{{cdata.build.4.3}}">> 
+<img src="/static/images/{{cdata.build.4.4}}"> > 
+<img src="/static/images/{{cdata.build.4.5}}"></td>
+<td>{{cdata.build.4.6}}</td>
+<td>{{cdata.build.4.8}}</td>
+</tr>
+
+<td rowspan="3"><b>신발</b></td>
+<td colspan="3"><img src="/static/images/{{cdata.shoes.0.3}}"></td>
+<td>{{cdata.shoes.0.4}}</td>
+<td>{{cdata.shoes.0.6}}</td>
+</tr>
+<tr>
+<td colspan="3"><img src="/static/images/{{cdata.shoes.1.3}}"></td>
+<td>{{cdata.shoes.1.4}}</td>
+<td>{{cdata.shoes.1.6}}</td>
+<tr>
+<td colspan="3"><img src="/static/images/{{cdata.shoes.2.3}}"></td>
+<td>{{cdata.shoes.2.4}}</td>
+<td>{{cdata.shoes.2.6}}</td>
+</tr>
+</table><br>
+
+<!-- 3번째 -->
+<table class="styled-table">
+<tr>
+<td colspan="4"><b>룬</b></td>
+</tr>
+<tr>
+<td rowspan="2">이미지</td>
+<td>룬정보</td>
+<td rowspan="2">이미지</td>
+<td>룬정보</td>
+</tr>
+<tr>
+<td>픽률% 승률%</td>
+<td>픽률% 승률%</td>
+</tr>
+
+
+<tr class="imgclass">
+<td colspan="4">이미지</td>
+<td rowspan="2">
+<img src="/static/images/{{cdata.lun.0.3}}">
+<img src="/static/images/{{cdata.lun.0.4}}">
+<img src="/static/images/{{cdata.lun.0.5}}">
+<img src="/static/images/{{cdata.lun.0.6}}">
+<img src="/static/images/{{cdata.lun.0.7}}">
+</td>
+<td colspan="3">
+<img src="/static/images/{{cdata.lun.0.8}}">
+<img src="/static/images/{{cdata.lun.0.9}}">
+<img src="/static/images/{{cdata.lun.0.10}}">
+</td>
+<td rowspan="2">
+<img src="/static/images/{{cdata.lun.0.11}}">
+<img src="/static/images/{{cdata.lun.0.12}}">
+<img src="/static/images/{{cdata.lun.0.13}}">
+<td colspan="3"><b>픽률:</b>{{cdata.lun.0.14}}<br>
+<td colspan="3">
+<b>승률:</b>{{cdata.lun.0.16}}
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css"> -->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<style type="text/css">
+table{
+margin: auto;
+text-align: center;
+width: 60%;
+height: 100px;
+background-color: white;
+}
+
+.styled-table thead tr {
+    background-color: #548DCA;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #548DCA;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #548DCA;
+}
+
+img {  
+height: 17%;
+width:5%; 
+}
+
+</style>
+</head>
+<body >
+<header>
+
+{%include 'main_top.html'%}
+</header>
+<br><br>
+<table style="text-align: right;">
+<tr>
+<td><a href="/board/insert/"><img src="/static/images/write.png"><b>[글쓰기]</b></a></td>
+</tr>
+</table>
+
+<table style="width: 70%;" class="styled-table">
+	<thead class="thead-dark">
+		<tr class="active-row" style="text-align: center;">
+			<th>번 호</th>
+			<th>제 목</th>
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</tr>
+	</thead>
+{% if data %}
+	{% for d in data %}
+		<tr>
+			<td>{{d.id}}</td>
+			<td>
+			{% with ''|center:d.nested as range %}
+				{% for _ in range %}
+					&nbsp;&nbsp;
+				{% endfor %}
+			{% endwith %}
+			<a href="/board/content?id={{d.id}}&page={{data.number}}">{{d.title}}</a></td>
+			<td>{{d.name}}</td>
+			<td>{{d.bdate.year}}.{{d.bdate.month}}.{{d.bdate.day}}</td>
+			<td>{{d.readcnt}}</td>
+		</tr>
+	{% endfor %}
+	<tr>
+		<td colspan="5" style="text-align: center;">
+{% if data.paginator.num_pages > 1 %} {# paginator.num_pages: 전체 페이지 수 #}
+        	<div style="text-align: center;">
+	{% if data.has_previous %} {# has_previous: 이전페이지가 있다면 #}
+            <a href='/board/list/?page={{data.previous_page_number}}'>&laquo;이전</a>
+	{% endif %}
+         <!-- nbsp; ensp; emsp; -->
+         &ensp;
+	(페이지 : {{data.number}} / {{data.paginator.num_pages}})
+	{% if data.has_next %} {# has_next: 다음페이지가 있다면 #}
+            <a href='/board/list/?page={{data.next_page_number}}'>다음&raquo;</a>
+	{% endif %}
+         </div>
+{% endif %}
+		</td>
+	</tr>
+{% else %}
+	<tr>
+		<td colspan="5">글이없어요</td>
+	</tr>
+{% endif %}
+	<tr>
+		<td colspan="6" style="text-align: center;">
+			<form action="/board/search/" method="post">{%csrf_token%}
+				<select name="s_type">
+					<option value="title" selected>글제목</option>
+					<option value="name">작성자</option>
+				</select>
+				<input type="text" name="s_value">
+				<input type="submit" value="검색">
+			</form>
+		</td>
+	</tr>
+</table>
+<!-- 
+{# 참고 : with 블럭으로 변수 범위 제한 - with 안에 사용된변수는  with blㅐck 내에서만 유효 들여쓰기를 여기서 했음#}
+{% with list='1,2,3,4,5' %}
+	{% for n in list.split %}
+		{{n}}
+	{% endfor %}
+{% endwith %}
+<br>
+{% with '1 2 3 4 5' as range %}
+	{% for n in range %}
+		{{n}}
+	{% endfor %}
+{% endwith %}
+ -->
+</body>
+</html>

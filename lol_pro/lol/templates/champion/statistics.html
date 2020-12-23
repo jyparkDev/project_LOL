@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<style type="text/css">
+table{
+margin: auto;
+text-align: left;
+width: 80%;
+height: 100px;
+background-color: white;
+
+}
+.test { border-collapse:collapse }
+
+ .main {
+            min-width: 320px;
+            max-width: 800px;
+            padding: 50px;
+            margin: 0 auto;
+            background: #ffffff;}
+
+        section {
+            display: none;
+            padding: 20px 0 0;
+            border-top: 1px solid #ddd;}
+
+        /*라디오버튼 숨김*/
+          input {
+              display: none;}
+
+        label {
+            display: inline-block;
+            margin: 0 0 -1px;
+            padding: 15px 25px;
+            font-weight: 600;
+            text-align: center;
+            color: #bbb;
+            border: 1px solid transparent;}
+
+        label:hover {
+            color: #2e9cdf;
+            cursor: pointer;
+            }
+
+        /*input 클릭시, label 스타일*/
+        input:checked + label {
+              color: #555;
+              border: 1px solid #ddd;
+              border-top: 2px solid #2e9cdf;
+              border-bottom: 1px solid #ffffff;}
+
+        #tab1:checked ~ #content1,
+        #tab2:checked ~ #content2,
+        #tab3:checked ~ #content3,
+        #tab4:checked ~ #content4,
+        #tab5:checked ~ #content5,
+        #tab6:checked ~ #content6,
+        #tab7:checked ~ #content7 {
+            display: block;}
+
+    #custom-search-form {
+        margin:0;
+        margin-top: 5px;
+        padding: 0;
+    }
+ 
+    #custom-search-form .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    #custom-search-form button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }
+
+.one table{
+margin: auto;
+text-align: center;
+width: 10%;
+height: 100px;
+background-color: white;
+}
+
+</style>
+<script type="text/javascript">
+
+window.onload = function () { 
+	startLoadFile(); 
+}; 
+
+function position(){
+	alert('hi');
+}
+function startLoadFile(){ 
+	
+
+		$.ajax({ 
+			url: 'images.json', 
+			type: 'GET', dataType : 'json', 
+			success : function (data) { 
+				createImages(data) 
+				} 
+		}); 
+		} 
+</script>
+<script type="text/javascript">
+
+var timeoutId;
+function aFunction() {
+       clearTimeout(timeoutId);
+       timeoutId = setTimeout(function () {
+           send();
+       }, 200);
+}
+$(document).ready(function () {
+    $("#keyword").keyup(function () {
+        aFunction();
+    });
+});
+
+function position(pos){
+	//alert(pos)
+	$(".image").empty();
+	$.ajax({
+		url:'/champion/position/',
+		type:'get',
+		data:{'pos':pos,'switch':'pos'},
+		dataType:'json',
+		success:function(data){
+			//alert(data)
+			str = ""
+			$.each(data,function(ind,entry){
+				//alert(entry['cname']);
+				str += "<a href='/champion/champion_detail?cname="+entry['cname']+"'>";
+				str += "<img src = '"+"/static/images/" + entry['cimg']+"' width='64px'>";
+				str += "<cite>"+entry['cname']+"</cite></a>";
+			});
+			
+			$(".image").append(str);
+			
+		},
+		error:function(){
+			alert("점검중입니다.")
+			location.href = history.back();
+		}
+		});	
+}
+function send(){
+	
+	var cham = document.getElementById("keyword").value;
+	
+	sendKeyword(cham);
+	
+}
+function sendKeyword(cham){
+	
+	//console.log(userKeyword);
+	$(".image").empty();
+	$.ajax({
+		url:'/champion/position/',
+		type:'get',
+		data:{'cham':cham,'switch':'search'},
+		dataType:'json',
+		success:function(data){
+			//alert(data)
+			str = ""
+			$.each(data,function(ind,entry){
+				//alert(entry['cname']);
+				str += "<a href='/champion/champion_detail?cname="+entry['cname']+"'>";
+				str += "<img src = '"+"/static/images/" + entry['cimg']+"' width='64px'>";
+				str += "<cite>"+entry['cname']+"</cite></a>";
+			});
+			
+			$(".image").append(str);
+			
+		},
+		error:function(){
+			//alert("점검중입니다.")
+			
+		}
+		});
+	
+}
+</script>
+</head>
+<body style="background-color: #EAEAEA">
+<header>
+{%include 'main_top.html'%}
+</header>
+<br><br><br><br><br><br>
+<table>
+<tr>
+<td>
+<table class='test'>
+	<tr><td>
+	<div class="main">
+    <input id="tab1" type="radio" name="tabs" checked> <!--디폴트 메뉴-->
+    <label for="tab1"><a href="/champion/statistics/">전체</a></label>
+
+    <input id="tab2" type="radio" name="tabs">
+    <label for="tab2"><a href="javascript:position('탑');">탑</a></label>
+
+   <input id="tab3" type="radio" name="tabs">
+    <label for="tab3"><a href="javascript:position('정글');">정글</a></label>
+
+    <input id="tab4" type="radio" name="tabs">
+    <label for="tab4"><a href="javascript:position('미드');">미드</a></label>
+
+    <input id="tab5" type="radio" name="tabs">
+    <label for="tab5"> <a href="javascript:position('바텀');">바텀</a></label>
+
+    <input id="tab6" type="radio" name="tabs">
+    <label for="tab6"><a href="javascript:position('서포터');">서포터</a></label>
+
+    <input id="tab7" type="radio" name="tabs">
+    <label for="tab7"><a href="#">로테이션</a></label><br><br>
+
+<div class="container">
+	<div class="row">
+        <div class="span12">
+            <form id="custom-search-form" class="form-search form-horizontal pull-right">
+                <div class="input-append span12">
+                    <input type="text" id="keyword" class="search-query" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)" >
+                    <button type="submit" class="btn"><i class="icon-search"></i></button>
+                </div>
+            </form>
+        </div>
+	</div>
+</div>
+
+</div>
+</td>
+</tr>
+</table>		
+
+
+<!-- 정렬방법 1 -->
+<table style="background-color: #EAEAEA">
+<tr>
+<td>
+<div id="image_container" class = 'image'> <!-- 이미지 마크업 생성 공간 --> 
+{% if cham %}
+{% for c in cham %}
+	<a href="/champion/champion_detail?cname={{c.cname}}">
+
+	<img src = "/static/images/{{c.cimg}}" width="64px" height="15px">{{c.cname}}
+
+	</a>
+{% endfor %}
+{% else %}
+
+<h3>챔피언 정보를 점검중 입니다!!</h3>
+{% endif %}
+</div>
+</td>
+</tr>
+</table>
+
+<!-- 전체테이블 끝 -->
+</td>
+</tr>
+</table>
+</body>
+</html>

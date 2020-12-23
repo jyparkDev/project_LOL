@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style type="text/css">
+
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 60%;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table2 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #548DCA;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #548DCA;
+}
+
+.styled-table2 thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table2 {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 60%;
+}
+
+.styled-table2 th,
+.styled-table2 td {
+    padding: 12px 15px;
+}
+
+.styled-table2 tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table2 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table2 tbody tr:nth-of-type(even) {
+    background-color: #EAEAEA;
+}
+
+
+.styled-table2 tbody tr:last-of-type {
+    border-bottom: 2px solid #D05A53;
+}
+
+.styled-table2 tbody tr.active-row2 {
+    font-weight: bold;
+    color: #D05A53;
+}
+
+.styled-table3 thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table3 {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table3 th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table3 tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table3 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table3 tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table3 tbody tr.active-row3 {
+    font-weight: bold;
+    color: #009879;
+}
+#box_1 {
+   float:left; width:200px; height:100px;
+   text-align: center;
+   margin: auto;
+   padding-left: 3.5em;
+}
+
+#box_2 {
+   display:inline-block; width:200px; height:100px;
+   text-align: center;
+   margin: auto;
+   padding-left: 3em;
+}
+
+
+
+
+.styled-table3 thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table3 {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    width: 50%;
+    text-align: center;
+}
+
+.styled-table3 th,
+.styled-table3 td {
+    padding: 12px 15px;
+}
+
+.styled-table3 tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table3 tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+
+.styled-table3 tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table3 tbody tr.active-row {
+    font-weight: bold;
+    color: #548DCA;
+}
+
+</style>
+</head>
+<body style="background-color: #EAEAEA; text-align: center;">
+<header>
+{%include 'main_top.html'%}
+</header>
+<table class="styled-table3">
+<tr>
+<td>
+
+<form action="/multi/requery/" method="post" style="background-image:url('/static/images/mulimg.png'); background-size:cover;">{% csrf_token %}
+
+   <div id=box_1>
+   <h4 style="font-size: 200%; font-weight: bolder;">blue팀</h4><br>
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue1" value="T1 제우스" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue2" value="T1 Cuzz" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue3" value="Hide on bush" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue4" value="viper3" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="blue5" value="곽곽보성" style="opacity:85%; text-align: center; font-weight: bold;">
+   </div>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+   <div id=box_2>
+   <h4  style="font-size: 200%; font-weight: bolder;">purple팀</h4><br>
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple1" value="칸 나" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple2" value="T1 Oner" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple3" value="T1 Fisher" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple4" value="T1 Gumayusi" style="opacity:85%; text-align: center; font-weight: bold;">
+        <input type="text" class="search-query" placeholder="소환사 명" name="purple5" value="T1 Keria" style="opacity:85%; text-align: center; font-weight: bold;">
+	</div>
+	<br>
+	<br>
+	<div><button type="submit" class="btn" style="width: 100pt; "><i class="icon-search"></i></button></div>
+
+</form>
+</td>
+</tr>
+</table>
+
+<br>
+
+<!-- 승리팀 테이블 -->
+<table class="styled-table">
+<tr class="active-row">
+<td><b>Blue팀</b></td><td><b>KDA</b></td><td><b>피해량</b></td><td><b>와드</b></td><td><b>CS</b></td><td><b>획득 골드량</b></td>
+</tr>
+{% if blue %}
+{% for b in blue %}
+<tr>
+<td>{{b.summonerName}}</td><td>{{b.kda}}</td><td>{{b.totalDamageDealtToChampions}}</td><td>{{b.wardsPlaced}}</td><td>{{b.totalMinionsKilled}}</td><td>{{b.goldEarned}}</td>
+</tr>
+{% endfor %}
+{% endif %}
+<tr>
+<td colspan="7">{{key1}}</td>
+</tr>
+</table>
+<br>
+<b style="text-align: center;">{{key3}}</b>
+<br>
+<!-- 패배팀 테이블 -->
+<table class="styled-table2">
+<tr class="active-row2">
+<td><b>Purple팀</b></td><td><b>KDA</b></td><td><b>피해량</b></td><td><b>와드</b></td><td><b>CS</b></td><td><b>획득 골드량</b></td>
+</tr>
+{% if purple %}
+{% for p in purple %}
+<tr>
+<td>{{p.summonerName}}</td><td>{{p.kda}}</td><td>{{p.totalDamageDealtToChampions}}</td><td>{{p.wardsPlaced}}</td><td>{{p.totalMinionsKilled}}</td><td>{{p.goldEarned}}</td>
+</tr>
+{% endfor %}
+{% endif %}
+<tr>
+<td colspan="7">{{key2}}</td>
+</tr>
+</table>
+<br><br>
+
+<table class="styled-table3">
+<tr class="active-row3">
+<td><b>추천 팀</b></td>
+<td><b>승률</b></td>
+</tr>
+{% if best %}
+{% for key, val in best.items %}
+<tr>
+<td>{{key}}</td>
+<td>{{val}}</td>
+</tr>
+{% endfor %}
+</table>
+<table class="styled-table3">
+<tr class="active-row3">
+<td colspan='2'><b>베스트 조합</b></td>
+</tr>
+{% for key2, val2 in best_of_best.items %}
+<tr>
+<td>{{key2}}</td><td>{{val2}}</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr>
+<td colspan="2"><b>추천 조합이 없습니다</b></td>
+</tr>
+{% endif %}
+</table>
+<br><br>
+</body>
+</html>

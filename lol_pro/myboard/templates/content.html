@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<style type="text/css">
+table{
+margin: auto;
+text-align: center;
+width: 60%;
+height: 100px;
+background-color: white;
+}
+
+.styled-table thead tr {
+    background-color: #548DCA;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #548DCA;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #548DCA;
+}
+
+</style>
+</head>
+<body >
+<header>
+{%include 'main_top.html'%}
+</header>
+<br><br>
+<table class="styled-table" style="width: 70%;">
+	<tr class="thead-dark">
+		<td style="text-align:right;">
+			<a href="/board/reply?id={{data_one.id}}"><b>[댓글 달기]</b></a>
+			<a href="/board/update?id={{data_one.id}}"><b>[게시글 수정]</b></a>
+			<a href="/board/delete?id={{data_one.id}}"><b>[게시글 삭제]</b></a>
+			<a href="/board/list?page={{page}}"><b>[게시판 목록보기]</b></a>
+		</td>
+	</tr>
+</table>
+<table class="table" style="width: 70%">
+	<tr style="background-color: silver;">
+		<td>
+			작성자 : <a href="mailto:{{data_one.mail}}">{{data_one.mail}}</a>
+			(ip: {{data_one.bip}})
+		</td>
+		<td>작성일 : {{data_one.bdate}}</td>
+		<td>조회수 : {{data_one.readcnt}}</td>
+	</tr>
+	<tr>
+		<td colspan="3">제목 : {{data_one.title}}</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			<textarea rows="5" cols="50" name="cont" readonly="readonly" style="width:100%">{{data_one.cont}}</textarea>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

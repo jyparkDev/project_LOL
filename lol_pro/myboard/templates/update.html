@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<script type="text/javascript">
+window.onload = function(){
+	document.getElementById("btnUpdate").onclick = function(){
+		chkFunc();
+	}
+	document.getElementById("btnBack").onclick = function(){
+		history.back();
+	}
+}
+
+function chkFunc(){
+	if (frm.up_passwd.value === "" ){
+		alert("채우시오");
+		return;
+	}
+	frm.submit(); //Ecma script 관심을 ㅠㅠ
+}
+</script>
+</head>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<style type="text/css">
+table{
+margin: auto;
+text-align: center;
+width: 60%;
+height: 100px;
+background-color: white;
+}
+
+.styled-table thead tr {
+    background-color: #548DCA;
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: center;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #548DCA;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #548DCA;
+}
+
+</style>
+<body style="background-color: #EAEAEA">
+<header>
+{%include 'main_top.html'%}
+</header>
+<h2 style="text-align: center;">게시글 수정</h2>
+<br><br>
+<form action="/board/updateok/" method="post" name="frm">{% csrf_token %}
+<input type="hidden" name="id" value="{{data_one.id}}">
+<table class="styled-table" style="width: 40%">
+	<tr class="thead-dark">
+		<td>작성자 :</td>
+		<td><input type="hidden" name="name" value="{{data_one.name}}">{{data_one.name}}</td>
+	</tr>
+	<tr>
+		<td>비밀번호 :</td>
+		<td><input type="text" name="up_passwd" placeholder="비밀번호입력"></td>
+	</tr>
+	<tr>
+		<td>이메일 :</td>
+		<td><input type="email" name="mail" value="{{data_one.mail}}"></td>
+	</tr>
+	<tr>
+		<td>글 제목 :</td>
+		<td><input type="text" name="title" size="49" value="{{data_one.title}}"></td>
+	</tr>
+	<tr>
+		<td>글 내용 :</td>
+		<td><textarea rows="5" cols="50" name="cont">{{data_one.cont}}</textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align: center;">
+			<input type="button" value="[수 정]" id="btnUpdate">
+			<input type="button" value="[이 전]" id="btnBack">
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

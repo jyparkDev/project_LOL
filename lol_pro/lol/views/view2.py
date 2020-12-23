@@ -8,7 +8,7 @@ import os.path
 import collections
 from lol.views.char_info import skill, spell, lun, startitem, itembuild, shoes,\
     char_poss
- 
+import threading, time 
 # 여기는 챔피언 분석 및 상세 페이지 입니다.
 try:
     path = os.path.abspath(os.path.dirname(__file__))
@@ -19,32 +19,60 @@ except Exception as e:
     print("DB config read err : " + str(e))
   
 def PositFunc(request):
-    pos = request.GET['pos']
-    #print(pos) 
-    try:
-        conn = MySQLdb.connect(**config)
-        cursor = conn.cursor()
-        sql = """
-        select cname, cimg, pname from champion inner join pos on cname = cirum where pname = '{}'
-        """.format(pos)
-        cursor.execute(sql)
-        data = cursor.fetchall()
-        #print(data[0])
-        datas = []
-        for i in data:
-            dic ={'cname':i[0],'cimg':i[1],'pname':i[2]}
-            datas.append(dic)
-        #print(datas)
+    if request.GET['switch'] == "pos":
+        pos = request.GET['pos']
         
-    except Exception as e2:
-        print("postion ajax err : " + str(e2))    
+        #print(pos) 
+        try:
+            conn = MySQLdb.connect(**config)
+            cursor = conn.cursor()
+            sql = """
+            select cname, cimg, pname from champion inner join pos on cname = cirum where pname = '{}' 
+            """.format(pos)
+            cursor.execute(sql)
+            data = cursor.fetchall()
+            #print(data[0])
+            datas = []
+            for i in data:
+                dic ={'cname':i[0],'cimg':i[1],'pname':i[2]}
+                datas.append(dic)
+            #print(datas)
+            
+        except Exception as e2:
+            print("postion ajax err : " + str(e2))    
     
-    finally:
-        cursor.close()
-        conn.close()
+        finally:
+            cursor.close()
+            conn.close()
+         
+    elif request.GET['switch'] == "search":  
+        cham = request.GET['cham']
+        print(cham)
+        #print(pos) 
+        try:
+            conn = MySQLdb.connect(**config)
+            cursor = conn.cursor()
+            sql = "select cname, cimg from champion inner join pos on cname = cirum where cirum like '%"+"{}".format(cham)+"%' group by cname"
+            cursor.execute(sql)
+           
+            data = cursor.fetchall()
+            print(data)
+            datas = []
+            for i in data:
+                dic ={'cname':i[0],'cimg':i[1]}
+                datas.append(dic)
+            print(datas)
+            
+        except Exception as e2:
+            print("postion ajax err : " + str(e2))    
+    
+        finally:
+            cursor.close()
+            conn.close() 
+           
         
     return HttpResponse(json.dumps(datas), content_type="application/json")   
- 
+    
 def StatisticsFunc(request):
         champ = Champion.objects.all()
         #print(champ)

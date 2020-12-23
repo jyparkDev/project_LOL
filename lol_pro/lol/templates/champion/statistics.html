@@ -133,6 +133,20 @@ function startLoadFile(){
 		} 
 </script>
 <script type="text/javascript">
+
+var timeoutId;
+function aFunction() {
+       clearTimeout(timeoutId);
+       timeoutId = setTimeout(function () {
+           send();
+       }, 200);
+}
+$(document).ready(function () {
+    $("#keyword").keyup(function () {
+        aFunction();
+    });
+});
+
 function position(pos){
 	//alert(pos)
 	$(".image").empty();
@@ -161,9 +175,10 @@ function position(pos){
 		});	
 }
 function send(){
+	
 	var cham = document.getElementById("keyword").value;
 	
-	setTimeout("sendKeyword('"+cham+"')", 1500);
+	sendKeyword(cham);
 	
 }
 function sendKeyword(cham){
@@ -234,7 +249,7 @@ function sendKeyword(cham){
         <div class="span12">
             <form id="custom-search-form" class="form-search form-horizontal pull-right">
                 <div class="input-append span12">
-                    <input type="text" id="keyword" class="search-query" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)" onkeyup="send();">
+                    <input type="text" id="keyword" class="search-query" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)" >
                     <button type="submit" class="btn"><i class="icon-search"></i></button>
                 </div>
             </form>

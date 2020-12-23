@@ -132,14 +132,14 @@ function startLoadFile(){
 		}); 
 		} 
 </script>
-<script>
+<script type="text/javascript">
 function position(pos){
 	//alert(pos)
 	$(".image").empty();
 	$.ajax({
 		url:'/champion/position/',
 		type:'get',
-		data:{'pos':pos},
+		data:{'pos':pos,'switch':'pos'},
 		dataType:'json',
 		success:function(data){
 			//alert(data)
@@ -159,6 +159,41 @@ function position(pos){
 			location.href = history.back();
 		}
 		});	
+}
+function send(){
+	var cham = document.getElementById("keyword").value;
+	
+	setTimeout("sendKeyword('"+cham+"')", 1500);
+	
+}
+function sendKeyword(cham){
+	
+	//console.log(userKeyword);
+	$(".image").empty();
+	$.ajax({
+		url:'/champion/position/',
+		type:'get',
+		data:{'cham':cham,'switch':'search'},
+		dataType:'json',
+		success:function(data){
+			//alert(data)
+			str = ""
+			$.each(data,function(ind,entry){
+				//alert(entry['cname']);
+				str += "<a href='/champion/champion_detail?cname="+entry['cname']+"'>";
+				str += "<img src = '"+"/static/images/" + entry['cimg']+"' width='64px'>";
+				str += "<cite>"+entry['cname']+"</cite></a>";
+			});
+			
+			$(".image").append(str);
+			
+		},
+		error:function(){
+			//alert("점검중입니다.")
+			
+		}
+		});
+	
 }
 </script>
 </head>
@@ -199,7 +234,7 @@ function position(pos){
         <div class="span12">
             <form id="custom-search-form" class="form-search form-horizontal pull-right">
                 <div class="input-append span12">
-                    <input type="text" class="search-query" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)">
+                    <input type="text" id="keyword" class="search-query" placeholder="챔피언 검색 (가렌, ㄱㄹ, ...)" onkeyup="send();">
                     <button type="submit" class="btn"><i class="icon-search"></i></button>
                 </div>
             </form>

@@ -123,19 +123,33 @@ def RequeryFunc(request):
     for dele in col_mean:
         col_sum.remove(dele)
     
-    blue_total = blue_df1[col_sum].sum().append(blue_df1[col_mean].mean()).to_list()
-#     print(blue_total)
-    red_total = red_df1[col_sum].sum().append(red_df1[col_mean].mean()).to_list()
-#     print(red_total)
+    blue_total = blue_df1[col_sum].sum().append(blue_df1[col_mean].mean()) # .to_list()
+    red_total = red_df1[col_sum].sum().append(red_df1[col_mean].mean()) # .to_list()
     
-    blue_total.extend(red_total)
-#     print(blue_total)
-    # both_df = pd.concat([ten_fin_df_blue, ten_fin_df_red], axis=1)
+    # blue_total.extend(red_total)
+    
+    #-----------------수정 2020.12.22---------------
+    both_total = (blue_total - red_total)
+    both_total = both_total[:, np.newaxis]
+    # print(both_total.shape) # (20, ) → (20, 1)
+    
+    # 스케일링
+    from sklearn.preprocessing import StandardScaler
+    
+    sc = StandardScaler()
+    sc.fit(both_total)    # x값만 대상
+    both_total = sc.transform(both_total)  
+    # print(both_total.shape)
     
     
-    pred = model.predict([blue_total])
+    both_newaxis = both_total.reshape(1, -1)
+    # print(both_newaxis.shape) # (20, 1) → (1, 20)
+    # ----------------------------------------------
+    
+    
+    pred = model.predict([both_newaxis]) # 정확한 분석과 확률을 위해 random forest 대신 sequential 사용
     # pred = (model.predict([blue_total]) > 0.5).astype('int32')
-#     pred = rf.predict([blue_total])
+    # pred = rf.predict([blue_total])
     # pred = (rf.predict([blue_total]) > 0.5).astype('int32')
     print('예측값:', pred.flatten()) # blue team (100) 기준
     
@@ -154,7 +168,6 @@ def RequeryFunc(request):
     print(key3)
     
     
-    
     # [괜찮은 조합 찾기]
     
     all = blue_team_summoners.copy()
@@ -165,7 +178,7 @@ def RequeryFunc(request):
     print(combi)
     print(len(combi))
     
-    best_combi = []
+    best_combi = {}
     
     for com in combi:
         red_team = all.copy()
@@ -194,18 +207,32 @@ def RequeryFunc(request):
         for dele in col_mean:
             col_sum.remove(dele)
     
-        blue_total = blue_df[col_sum].sum().append(blue_df[col_mean].mean()).to_list()
-        red_total = red_df[col_sum].sum().append(red_df[col_mean].mean()).to_list()
+        blue_total = blue_df[col_sum].sum().append(blue_df[col_mean].mean())
+        red_total = red_df[col_sum].sum().append(red_df[col_mean].mean())
         
-        both_total = blue_total.copy()
-        both_total.extend(red_total)
-#         print(both_total)
-    
-        pred3 = model.predict([both_total])
-#         print(pred3)
+        both_total = (blue_total - red_total).to_numpy()
+        both_total = both_total[:, np.newaxis]
+        
+        # 스케일링
+        from sklearn.preprocessing import StandardScaler
+        sc = StandardScaler()
+        sc.fit(both_total)
+        both_total = sc.transform(both_total)
+          
+        both_newaxis = both_total.reshape(1, -1)
+
+        pred3 = model.predict([both_newaxis])
+
         if pred3.flatten()[0] < 0.55 and pred3.flatten()[0] > 0.45:
-            best_combi.append({str(blue_team): pred3.flatten()[0]})
-            break
+            best_combi[str(blue_team)] = pred3.flatten()[0]
+            
     print(best_combi)
-    print(len(best_combi))
-    return render(request, 'multi/query.html', {'key1':key1, 'key2':key2, 'key3':key3 ,'blue':blue, 'purple':purple, 'pred':pred, 'best':best_combi})
+    best_of_value = min(best_combi.values(), key=lambda x: abs(0.5-x))
+    best_of_key = list(best_combi.keys())[list(best_combi.values()).index(best_of_value)]
+    
+    best_of_best = {}
+    best_of_best[best_of_key] = best_of_value
+        
+    return render(request, 'multi/query.html', {'key1':key1, 'key2':key2, 'key3':key3,
+                                                'blue':blue, 'purple':purple, 'pred':pred,
+                                                'best':best_combi, 'best_of_best':best_of_best})

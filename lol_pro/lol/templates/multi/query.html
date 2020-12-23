@@ -84,7 +84,7 @@
 }
 
 .styled-table2 tbody tr:nth-of-type(even) {
-    background-color: ##EAEAEA;
+    background-color: #EAEAEA;
 }
 
 
@@ -135,15 +135,15 @@
     color: #009879;
 }
 #box_1 {
-	float:left; width:200px; height:100px;
-	text-align: center;
-	margin: auto;
+   float:left; width:200px; height:100px;
+   text-align: center;
+   margin: auto;
 }
 
 #box_2 {
-	display:inline-block; width:200px; height:100px;
-	text-align: center;
-	margin: auto;
+   display:inline-block; width:200px; height:100px;
+   text-align: center;
+   margin: auto;
 }
 
 
@@ -196,46 +196,29 @@
 <header>
 {%include 'main_top.html'%}
 </header>
-<!-- 검색 버튼
-<div class="container">
-	<div class="row">
-        <div class="span12">
-                <div class="input-append span12">
-                    <input type="text" class="search-query" placeholder="소환사 명" name="blue1">
-                </div>
-        </div>
-	</div>
-</div> 
-['cautious mid', '엘리멘트 미스틱', 'd0 myself ', '분열 하 다', 'yyyyxxxxzzzz']
-['Riverzz', 'BJ갈배', 'Blooming Lily', 'Heimish kingmono', 'ge ju tai xiao']
-'damageDealtToObjectives', 'totalDamageDealtToChampions', 'damageDealtToTurrets', 'inhibitorKills', 'firstTowerKill',
- 'turretKills', 'goldEarned', 'goldSpent', 'champLevel', 'totalMinionsKilled', 'firstBloodKill', 'firstInhibitorKill', 
- 'neutralMinionsKilledTeamJungle', 'neutralMinionsKilledEnemyJungle', 'neutralMinionsKilled', 'visionScore', 'wardsPlaced', 'wardsKilled', 'kda']
- kda, totalDamageDealtToChampions, wardsPlaced, totalMinionsKilled, goldEarned, summonerName
--->
 <table class="styled-table3">
 <tr>
 <td>
 
 <form action="/multi/requery/" method="post">{% csrf_token %}
 
-	<div id=box_1>
-	<h4>blue팀</h4><br>
+   <div id=box_1>
+   <h4>blue팀</h4><br>
         <input type="text" class="search-query" placeholder="소환사 명" name="blue1" value="T1 제우스">
         <input type="text" class="search-query" placeholder="소환사 명" name="blue2" value="T1 Cuzz">
         <input type="text" class="search-query" placeholder="소환사 명" name="blue3" value="Hide on bush">
         <input type="text" class="search-query" placeholder="소환사 명" name="blue4" value="viper3">
         <input type="text" class="search-query" placeholder="소환사 명" name="blue5" value="곽곽보성">
-	</div>
+   </div>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-	<div id=box_2>
-	<h4>purple팀</h4><br>
+   <div id=box_2>
+   <h4>purple팀</h4><br>
         <input type="text" class="search-query" placeholder="소환사 명" name="purple1" value="칸 나">
         <input type="text" class="search-query" placeholder="소환사 명" name="purple2" value="T1 Oner">
         <input type="text" class="search-query" placeholder="소환사 명" name="purple3" value="T1 Fisher">
         <input type="text" class="search-query" placeholder="소환사 명" name="purple4" value="T1 Gumayusi">
         <input type="text" class="search-query" placeholder="소환사 명" name="purple5" value="T1 Keria">
-
+	</div>
 <button type="submit" class="btn"><i class="icon-search"></i></button>
 </form>
 </td>
@@ -287,13 +270,21 @@
 <td><b>승률</b></td>
 </tr>
 {% if best %}
-{% for b in best %}
-{% for key, val in b.items %}
+{% for key, val in best.items %}
 <tr>
 <td>{{key}}</td>
 <td>{{val}}</td>
 </tr>
 {% endfor %}
+</table>
+<table class="styled-table3">
+<tr class="active-row3">
+<td colspan='2'><b>베스트 조합</b></td>
+</tr>
+{% for key2, val2 in best_of_best.items %}
+<tr>
+<td>{{key2}}</td><td>{{val2}}</td>
+</tr>
 {% endfor %}
 {% else %}
 <tr>

@@ -1,3 +1,2 @@
 # lol_project
-
-![LOL 설명](/presentation/f55137fd18b84fe5dba6aa1622688b385n0MSMNzsS6nEIf8-0.png)
+![lol](https://user-images.githubusercontent.com/72076023/113073598-58118600-9204-11eb-81db-65b8893d80a5.png)
